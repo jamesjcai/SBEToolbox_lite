@@ -20,12 +20,12 @@ if (M1 ~= M2)
 end
 
 
-[e,sym] = getEdges(B);
+[e,issym] = getEdges(B);
 Me = size(e,1);
 A = zeros(M1,Me);
 
 for j=1:Me
-    if (sym==1)
+    if (issym==1)
         A(e(j,1),j)=1;
         A(e(j,2),j)=1;
     else
@@ -36,7 +36,7 @@ end
 
 end
 
-function a = issymmetric(B)
+function a = i_issymmetric(B)
 % find out if the graph is directed or undirected
 
 B = logical(B);
@@ -44,8 +44,8 @@ a = sum(sum(abs(B-B'))) == 0;
     
 end
 
-function [e,sym] = getEdges(B)
-% returns list of edges 'e' and boolean 'sym' to indicate if it is directed
+function [e,issym] = getEdges(B)
+% returns list of edges 'e' and boolean 'issym' to indicate if it is directed
 % graph or not
 
 M = size(B,1);
@@ -55,16 +55,16 @@ if (Me < 1)
     error('Graph must contain at least 1 edge!');
 end
 
-sym = issymmetric(B);
+issym = i_issymmetric(B);
 
-if (sym == 1)
+if (issym == 1)
     Me = Me/2;
 end
 
 e = zeros(Me,2);
 
 k=1;
-if (sym == 1)
+if (issym == 1)
     for i=1:M
         for j=i:M
             if (B(i,j)==1)

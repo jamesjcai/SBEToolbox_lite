@@ -276,7 +276,7 @@ function StatNetworkSummary_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global sbeG;
-%[y]=issymmetric(sbeG);
+%[y]=is_symmetric(sbeG);
 %fprintf('Is symmetric: %d\n',y);
 
 i_dispheader('Network Summary');
@@ -543,10 +543,10 @@ function EditSymmetrizeAdjacencyMatrix_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global sbeG sbeNode sbeG_ori sbeNode_ori
-if issymmetric(sbeG)
+if is_symmetric(sbeG)
     set(hObject,'enable','off');
 end
-if ~issymmetric(sbeG)
+if ~is_symmetric(sbeG)
     sbeG_ori=sbeG;
     sbeNode_ori=sbeNode;
     [sbeG]=symmetrizeadjmat(sbeG);
@@ -1380,7 +1380,7 @@ if (isempty(sbeG)),
     set(cannotbeempty,'enable','off');    
 else
     set(cannotbeempty,'enable','on');
-    if issymmetric(sbeG)
+    if is_symmetric(sbeG)
         set(handles.EditSymmetrizeAdjacencyMatrix,'enable','off');
     end
 end
