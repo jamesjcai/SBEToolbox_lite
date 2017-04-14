@@ -14,7 +14,7 @@ end
 gplot(sbeG,xy,'-');
 h=findobj('type','line');
 %set(h,'color',[.6 .6 .6],'linewidth',1,'LineSmoothing','on')
-set(h,'color',[.6 .6 .6],'linewidth',0.5,'LineSmoothing','on')
+set(h,'color',[.6 .6 .6],'linewidth',0.5)
 hold on;
 z=ones(size(xy(:,1)));
 plot3(xy(:,1), xy(:,2), z, 'r.');
@@ -32,10 +32,10 @@ fh=gcf;
 th = uitoolbar(fh);
 
 % Add a push tool to the toolbar
-a = [.20:.05:0.95];
+a = 0.20:0.05:0.95;
 img1(:,:,1) = repmat(a,16,1)';
 img1(:,:,2) = repmat(a,16,1);
-img1(:,:,3) = repmat(flipdim(a,2),16,1);
+img1(:,:,3) = repmat(flip(a,2),16,1);
 pth = uipushtool(th,'CData',img1,...
            'TooltipString','My push tool',...
            'HandleVisibility','off','ClickedCallback','axis off');
@@ -44,7 +44,7 @@ pth = uipushtool(th,'CData',img1,...
 img2 = rand(16,16,3);
 tth = uitoggletool(th,'CData',img2,'Separator','on',...
            'TooltipString','Your toggle tool',...
-           'HandleVisibility','off');
+           'HandleVisibility','off','ClickedCallback','axis on');
        
 
 end
