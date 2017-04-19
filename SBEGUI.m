@@ -22,7 +22,7 @@ function varargout = SBEGUI(varargin)
 
 % Edit the above text to modify the response to help SBEGUI
 
-% Last Modified by GUIDE v2.5 20-Sep-2010 18:19:20
+% Last Modified by GUIDE v2.5 26-May-2015 13:55:54
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -57,10 +57,10 @@ handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
-sbeguiolddir=pwd;
-cdsbe;
+% sbeguiolddir=pwd;
 sbepath=fileparts(which(mfilename));
 addpath([sbepath,filesep,'bgl']);
+cdsbe;
 SetMenuStatus(handles);
 
 % UIWAIT makes SBEGUI wait for user response (see UIRESUME)
@@ -278,7 +278,7 @@ function StatNetworkSummary_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global sbeG;
-%[y]=is_symmetric(sbeG);
+%[y]=issymnet(sbeG);
 %fprintf('Is symmetric: %d\n',y);
 
 i_dispheader('Network Summary');
@@ -545,10 +545,10 @@ function EditSymmetrizeAdjacencyMatrix_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global sbeG sbeNode sbeG_ori sbeNode_ori
-if is_symmetric(sbeG)
+if issymnet(sbeG)
     set(hObject,'enable','off');
 end
-if ~is_symmetric(sbeG)
+if ~issymnet(sbeG)
     sbeG_ori=sbeG;
     sbeNode_ori=sbeNode;
     [sbeG]=symmetrizeadjmat(sbeG);
@@ -841,9 +841,14 @@ global sbeG sbeNode
        if n1<1
           errordlg('Invalid Iterations');
        else
-    xy=fruchterman_reingold_force_directed_layout(double(sparse(sbeG)),'iterations',n1);
-    figure;
-    plotnet(sbeG,xy,sbeNode);
+           try
+            xy=fruchterman_reingold_force_directed_layout(double(sparse(sbeG)),'iterations',n1);
+           catch ME
+            errordlg(ME.identifier);
+            return;
+           end
+            figure;
+            plotnet(sbeG,xy,sbeNode);
            assignin('base','lastans',xy);
        end
    end
@@ -857,7 +862,12 @@ function LayoutGursoyAtun_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global sbeG sbeNode
-xy=gursoy_atun_layout(double(sparse(sbeG)));
+try
+    xy=gursoy_atun_layout(double(sparse(sbeG)));
+catch ME
+    errordlg(ME.identifier);
+    return;
+end       
 figure;
 plotnet(sbeG,xy,sbeNode);
 
@@ -868,7 +878,12 @@ function LayoutKamadaKawaiSpring_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global sbeG sbeNode
-xy=kamada_kawai_spring_layout(double(sparse(sbeG)));
+try
+    xy=kamada_kawai_spring_layout(double(sparse(sbeG)));
+catch ME
+    errordlg(ME.identifier);
+    return;
+end
 figure;
 plotnet(sbeG,xy,sbeNode);
 
@@ -1123,12 +1138,12 @@ end
 
 
 % --------------------------------------------------------------------
-function EditViewNetworkSVG_Callback(hObject, eventdata, handles)
-% hObject    handle to EditViewNetworkSVG (see GCBO)
+function EditViewNetworkProtovis_Callback(hObject, eventdata, handles)
+% hObject    handle to EditViewNetworkProtovis (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global sbeG sbeNode
-viewnetsvg(sbeG,sbeNode);
+viewnetprotovis(sbeG,sbeNode);
 
 % --------------------------------------------------------------------
 function EditViewNetworkCytoscape_Callback(hObject, eventdata, handles)
@@ -1311,7 +1326,7 @@ handles.LayoutIteration,...
 handles.StatsGraphEfficiency,...
 handles.EditFindNode,...
 handles.NetworkSaveAsPajekPajFile,...
-handles.EditViewNetworkSVG,...
+handles.EditViewNetworkProtovis,...
 handles.EditViewNetworkCytoscape,...
 handles.View,...
 handles.WantToExportResultFile,...
@@ -1334,7 +1349,8 @@ cannotbeempty = [
         handles.EditSymmetrizeAdjacencyMatrix,...
         handles.ViewAdjacencyMatrix,...
         handles.EditViewNetworkCytoscape,...
-        handles.EditViewNetworkSVG,...
+        handles.EditViewNetworkProtovis,...
+        handles.EditViewNetworkSigma,...
         handles.EditDisplayNodesList,...
         handles.LayoutCircle,...
         handles.LayoutTreeRing,...
@@ -1382,7 +1398,7 @@ if (isempty(sbeG)),
     set(cannotbeempty,'enable','off');    
 else
     set(cannotbeempty,'enable','on');
-    if is_symmetric(sbeG)
+    if issymnet(sbeG)
         set(handles.EditSymmetrizeAdjacencyMatrix,'enable','off');
     end
 end
@@ -1506,3 +1522,100 @@ global sbeG
  fprintf('Method 2: %f\n', out2);
  i_dispfooter;
  assignin('base','lastans',[out1 out2]);
+
+
+% --------------------------------------------------------------------
+function EditViewNetworkSigma_Callback(hObject, eventdata, handles)
+% hObject    handle to EditViewNetworkSigma (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global sbeG sbeNode
+
+[s,v] = listdlg('PromptString','Select a layout method:',...
+    'SelectionMode','single',...
+    'ListString',{'fruchterman_reingold_force','gursoy_atun',...
+    'kamada_kawai','circle'});
+
+if isempty(s), return; end
+if v==1
+    switch s
+        case 1
+            xy=fruchterman_reingold_force_directed_layout(double(sparse(sbeG)));
+        case 2
+            xy=gursoy_atun_layout(double(sparse(sbeG)));            
+        case 3
+            xy=kamada_kawai_spring_layout(double(sparse(sbeG)));    
+        case 4
+            [xy]=circle_layout(sbeG);
+    end
+else
+    xy=[];
+end
+
+try
+    sigmajsrun(sbeG,sbeNode,xy);
+catch exception
+    errordlg(exception.message);
+end
+
+
+% --------------------------------------------------------------------
+function clusteringAlgorithms_Callback(hObject, eventdata, handles)
+% hObject    handle to clusteringAlgorithms (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function ModuleClusterOne_Callback(hObject, eventdata, handles)
+% hObject    handle to ModuleClusterOne (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function ModuleMCODE_Callback(hObject, eventdata, handles)
+% hObject    handle to ModuleMCODE (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function MCLVanDongen2000_Callback(hObject, eventdata, handles)
+% hObject    handle to MCLVanDongen2000 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function Untitled_1_Callback(hObject, eventdata, handles)
+% hObject    handle to Untitled_1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function LocalAverageConnectivity_Callback(hObject, eventdata, handles)
+% hObject    handle to LocalAverageConnectivity (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function CoreNumber_Callback(hObject, eventdata, handles)
+% hObject    handle to CoreNumber (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --------------------------------------------------------------------
+function ExtractLargestConnectedNetwork_Callback(hObject, eventdata, handles)
+% hObject    handle to ExtractLargestConnectedNetwork (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global sbeG sbeNode 
+[sbeG,idx] = largest_component(sbeG);
+sbeNode=sbeNode(idx);
+
+ 

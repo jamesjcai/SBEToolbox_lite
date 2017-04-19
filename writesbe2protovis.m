@@ -18,7 +18,7 @@ if nargin<3, sbePartition=[]; end
   
 %adj2pajek2(sbeG,filename,'nodeNames',sbeNode,'partition',sbePartition);
 n=num_vertices(sbeG);
-if nargin<2, sbeNode=num2cellstr([1:n]); end
+if nargin<2, sbeNode=num2cellstr(1:n); end
 
 
 fid = fopen(filename,'wt','native'); 
