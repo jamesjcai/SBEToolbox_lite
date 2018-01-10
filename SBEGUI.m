@@ -60,7 +60,7 @@ guidata(hObject, handles);
 % sbeguiolddir=pwd;
 sbepath=fileparts(which(mfilename));
 addpath([sbepath,filesep,'bgl']);
-cdsbe;
+%cdsbe;
 SetMenuStatus(handles);
 
 % UIWAIT makes SBEGUI wait for user response (see UIRESUME)
