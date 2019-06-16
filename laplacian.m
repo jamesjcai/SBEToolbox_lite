@@ -1,4 +1,4 @@
-function L = laplacian(g)
+function L = laplacian(sbeG)
 % Get graph Laplacian matrix
 %
 %   L = laplacian(g)
@@ -8,4 +8,4 @@ function L = laplacian(g)
 %
 % See also: adjacency
 
-L = diag(sum(g.adj)) - g.adj;
+L = diag(sum(sbeG)) - sbeG;

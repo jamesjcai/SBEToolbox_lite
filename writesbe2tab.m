@@ -11,7 +11,7 @@ if nargin < 3
        {'*.txt;*.tab', 'Text Format Files (*.txt, *.tab)';
         '*.*',  'All Files (*.*)'}, ...
         'Save as');
-	if ~(filename),
+	if ~(filename)
         return;
     end
 	filename=[pathname,filename];
