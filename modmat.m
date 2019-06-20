@@ -40,6 +40,7 @@ function [B] = modmat(G)
 % by: M. E. J. Newman
 % (17 Feb 2006)
 
+
         n = length(G);
         deg = sum(G,1);
         m = sum(deg)/2;
@@ -49,3 +50,8 @@ function [B] = modmat(G)
                 B(k1, k2) = G(k1, k2) - deg(k1) * deg(k2) / (2 * m);
             end
         end
+        
+
+B2=G-(deg'*deg)/(2*m);
+isequal(B,B2)
+
