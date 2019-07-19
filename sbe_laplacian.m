@@ -1,4 +1,4 @@
-function L = laplacian(sbeG)
+function L = sbe_laplacian(sbeG)
 % Get graph Laplacian matrix
 %
 %   L = laplacian(g)
