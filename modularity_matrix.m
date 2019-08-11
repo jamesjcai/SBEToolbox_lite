@@ -1,4 +1,4 @@
-function [B] = modmat(G)
+function [B] = modularity_matrix(G)
 % MODMAT - Modularity matrix for undirected graph
 %
 %   B = modmat(G) find modularity matrix of the undirected graph. Each

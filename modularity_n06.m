@@ -26,9 +26,7 @@ function q = modularity_n06(G,s)
 % M. E. J. Newman*
 % http://www.pnas.org/content/103/23/8577.full.pdf+html
 
-
-
-if nargin<2,
+if nargin<2
     n=size(G,1);
     s = (rand(1,n) > rand)*2-1;
 end
@@ -37,5 +35,5 @@ deg = sum(G);
 m = sum(deg)/2;
 s = s(:);
 
-q = s' * modmat(G) * s / (4*m);
+q = s' * modularity_matrix(G) * s / (4*m);
 

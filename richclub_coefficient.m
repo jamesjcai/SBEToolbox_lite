@@ -14,7 +14,7 @@ vect_k=sum(G);
 for x=1:length(k)
     idx=vect_k>k(x);
     G2=G(idx,idx);
-    [Nk,Mk]=size(G2);
+    [Nk]=size(G2,1);
     Ek=0.5*sum(G2(:));
     t(x)=2*Ek/(Nk*(Nk-1));
 end

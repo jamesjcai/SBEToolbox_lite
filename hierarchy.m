@@ -9,7 +9,7 @@ function h = hierarchy(G)
 if directed(G)
     error('Graph must be undirected.');
 end
-B = modmat(G);
+B = modularity_matrix(G);
 deg = degree(G);
 m = sum(deg)/2; % number of edges
 % n = size(G,1);
