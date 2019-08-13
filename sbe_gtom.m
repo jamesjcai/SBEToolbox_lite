@@ -1,4 +1,14 @@
 function [GTOM,bm]=sbe_gtom(A,numSteps)
+
+% The topological overlap matrix # = [$ij ] is a similarity measure (Kaufman
+% and Rousseeuw, 1990) since it is non-negative and symmetric. 
+% When it comes to clustering gene expression profiles (module definition),
+% the TOM-based dissimilarity d%
+% ij leads to more distinct gene modules than
+% the current standard measure (1 minus the absolute value of correlation coefficient)
+% as illustrated in appendix A (Figure 15).
+% http://dibernardo.tigem.it/files/papers/2008/zhangbin-statappsgeneticsmolbio.pdf
+
 if nargin<2
     numSteps=1;
 end
