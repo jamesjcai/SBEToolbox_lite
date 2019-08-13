@@ -1,0 +1,11 @@
+{
+"sbe_cor2adj":
+{
+	"inputs":
+	[
+		{"name":"cor","kind":"required","type":"numeric"},		
+		{"name":"softpower", "kind":"ordered", "type":[["double", "integer", ">0"], ["single", "integer", ">0"]]},
+		{"name":"type","kind":"namevalue","type":["char", "choices={'unsigned','signed','signedhybrid','hybrid2','distance'}"]}
+	]
+}
+}

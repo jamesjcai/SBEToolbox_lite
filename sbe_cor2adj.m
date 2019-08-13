@@ -1,21 +1,23 @@
-function [adj]=sbe_cor2adj(cor,varargin)
+function [adj]=sbe_cor2adj(cor,softpwr,varargin)
 % Calculate WGCNA network adjacency
 % Calculates (correlation or distance) network adjacency from given expression data or from a similarity.
 %
 % e.g., adj=sbe_cor2adj(cor,'softpower',2)
+
+if nargin<2, error('two input parameters required.'); end
 
 p = inputParser;
 defaultType = 'unsigned';
 validTypes = {'unsigned','signed','signedhybrid','hybrid2','distance'};
 checkType = @(x) any(validatestring(x,validTypes));
 addRequired(p,'cor',@isnumeric);
-addParameter(p,'softpower',6,@isnumeric);
+% addParameter(p,'softpower',6,@isnumeric);
 addOptional(p,'type',defaultType,checkType)
 addOptional(p,'modified',false,@islogical);
 
 p.KeepUnmatched = true;
 parse(p,cor,varargin{:})
-softpwr=p.Results.softpower;
+% softpwr=p.Results.softpower;
 
 switch p.Results.type
     case 'unsigned'

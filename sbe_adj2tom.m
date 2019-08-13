@@ -17,7 +17,7 @@ validTypes = {'unsigned','signed'};
 checkType = @(x) any(validatestring(x,validTypes));
 addRequired(p,'adj',@isnumeric);
 addOptional(p,'type',defaultType,checkType)
-parse(p,cor,varargin{:})
+parse(p,adj,varargin{:})
 
 switch p.Results.type
     case 'unsigned'

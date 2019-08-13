@@ -1,4 +1,8 @@
-function [T]=sbe_diffcoex(adj1,adj2)
+function [dissTOMC1C2]=sbe_diffcoex(adj1,adj2,vbeta)
+if nargin<2
+    vbeta=2;
+end
+
 % DiffCoEx is a method for identifying correlation pattern changes, which builds on the commonly used Weighted Gene Coexpression Network Analysis (WGCNA) framework for coexpression analysis.
 %
 % https://rdrr.io/github/ddeweerd/MODifieRDev/man/diffcoex.html
@@ -22,8 +26,10 @@ dissTOMC1C2 = 1-sbe_adj2tom(adjchg,1);
 % abbreviation of) one of "ward", "single", "complete", "average", 
 % "mcquitty", "median" or "centroid". This applies to hierachical clustering.
 
-Z = linkage(dissTOMC1C2,'method','ward');
-T = cluster(Z,'cutoff',0.8);
+% Z=linkage(dissTOMC1C2,'average');
+% T=cluster(Z,'cutoff',0.8);
 
+% Z=linkage(dissTOMC1C2,'average');
+% T=cluster(Z,'maxclust',200);
 
 
