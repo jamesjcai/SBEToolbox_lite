@@ -36,7 +36,7 @@ switch p.Results.type
          adj=(1+abs(cor))/2;
     case 'distance'
          dist=cor;
-         adj=(1-(dist./max(dist)).^2);
+         adj=1-(dist./max(dist)).^2;
 end
 adj=adj.^softpwr;
 adj=adj-diag(diag(adj));

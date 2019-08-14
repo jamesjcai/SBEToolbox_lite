@@ -12,9 +12,6 @@ function k = sbe_dkernel(g, beta)
 % 6/6/2009
 
 narginchk(2, 2);
-
 [u, s, v] = svd(full(sbe_laplacian(g)));
-
 % u and v is the same since laplacian is symetric.
-
 k = u * diag(beta * degree(g)) * v;

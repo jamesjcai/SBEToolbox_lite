@@ -1,4 +1,4 @@
-function L = sbe_laplacian(sbeG)
+function L = sbe_laplacian(A)
 % Get graph Laplacian matrix
 %
 %   L = laplacian(g)
@@ -7,5 +7,5 @@ function L = sbe_laplacian(sbeG)
 % diagonal matrix and A is adjacency matrix.
 %
 % See also: adjacency
+L = diag(sum(A)) - A;
 
-L = diag(sum(sbeG)) - sbeG;
