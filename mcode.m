@@ -35,7 +35,7 @@ end
 num=0;
 modules=cell(0);
 
-while max(weight)>=2;
+while max(weight)>=2
     seed=find(weight==max(weight));
     svertex=seed(1);
     %if weight(svertex)<2,break; end;
@@ -62,7 +62,7 @@ while r<=length(modules)
 end
 
 moduleid=zeros(n,1);
-for u=1:length(modules);
+for u=1:length(modules)
 	moduleid(modules{u})=u;
 end
 
