@@ -3,6 +3,11 @@ function [sbeG,sbeNode]=readtab2sbe(filename,usenodenum,casesensitive)
 %
 % [sbeG,sbeNode]=readtab2sbe(filename,usenodenum)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 sbeG=[]; sbeNode=[];
 
 if nargin<3

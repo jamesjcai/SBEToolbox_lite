@@ -40,6 +40,12 @@ function B=sbe_modularity_matrix(A,gammav)
 % by: M. E. J. Newman
 % (17 Feb 2006)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
+
 if nargin<2
     gammav=1;
 end

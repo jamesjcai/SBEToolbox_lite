@@ -11,10 +11,10 @@ function [sbeG,sbeNode]=randnet_er(n,p)
 %   A = randnet_erdosreyni(100,0.05);
 % See Also: erdos_reyni
 
-% Systems Biology & Evolution Toolbox, (C) 2010
-% Author: James J. Cai
-% Email: jcai@cvm.tamu.edu
-% Website: http://bioinformatics.org/sbetoolbox/
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 % Last revision: 7/12/2010
 
 %%

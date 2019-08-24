@@ -8,11 +8,10 @@ function [out]=graph_efficiency(G)
 %
 %SEE ALSO: DELTA_CENTRALITY
 
-% Systems Biology & Evolution Toolbox, (C) 2010
-% Author: James J. Cai
-% Email: jcai@cvm.tamu.edu
-% Website: http://bioinformatics.org/sbetoolbox/
-% Last revision: 7/12/2010
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 n=num_vertices(G);
 if ~issparse(G)

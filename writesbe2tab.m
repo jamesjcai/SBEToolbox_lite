@@ -3,6 +3,11 @@ function writesbe2tab(sbeG,sbeNode,filename,useint)
 %
 % writesbe2tab(sbeG,sbeNode,filename,useint)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<4
     useint=false;
 end

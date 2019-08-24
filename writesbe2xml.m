@@ -2,7 +2,14 @@ function writesbe2xml(sbeG,sbeNode,filename,xy)
 % WRITESBE2XML
 %
 % writesbe2xml(sbeG,sbeNode,filename,useint)
-%
+
+
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
+
 if nargin<4
     xy=[];
 end

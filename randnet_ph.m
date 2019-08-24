@@ -8,10 +8,10 @@ function [sbeG,sbeNode]=randnet_ph(v_deg)
 %Natasa Przulj and Desmond J Higham
 %Modelling protein-protein interaction networks via a stickiness index
 
-% Systems Biology & Evolution Toolbox, (C) 2010
-% Author: James J. Cai
-% Email: jcai@cvm.tamu.edu
-% Website: http://bioinformatics.org/sbetoolbox/
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 % Last revision: 7/12/2010
 
 dgi=v_deg./sum(v_deg);

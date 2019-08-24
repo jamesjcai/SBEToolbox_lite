@@ -5,6 +5,11 @@ function [simMatrix]=sbe_localsim(A,varargin)
 % ref: Tao Zhou et al.: Predicting Missing Links via Local Information
 % https://arxiv.org/abs/0901.0553
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 p = inputParser;
 defaultType = 'ra';
 validTypes = {'cn','st','jc','aa','ra'};

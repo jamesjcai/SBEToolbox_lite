@@ -4,6 +4,11 @@ function [cv]=soffercc(G,v)
 % Soffer SN, Vázquez A: Network clustering coefficient without
 % degreecorrelation biases. Physical Review E 2005, 71(5):57101.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2
     %error('Two parameters needed.')
     v=1:size(G,1);

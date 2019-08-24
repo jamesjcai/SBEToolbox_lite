@@ -1,11 +1,10 @@
 function [sbeG,sbeNode]=sbeopenfile(filename,formatid)
 %SBEOPENFILE - Open sequence file
 
-% Population Genetics & Evolution Toolbox, (C) 2007
-% Author: James J. Cai
-% Email: jamescai@stanford.edu
-% Website: http://bioinformatics.org/pgetoolbox/
-% Last revision: 2/23/2007
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 
  sbeG=[];
  sbeNode=[];

@@ -1,5 +1,10 @@
 function plotnet2kinds(sbeG,sbeNode,sbePartition,xy)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if ~issparse(sbeG), sbeG=sparse(sbeG); end
 if nargin<2
     sbeNode=num2str((1:size(sbeG,1))');

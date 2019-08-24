@@ -3,6 +3,11 @@ function [res]=graph_meandist(G)
 %
 %[res]=graph_meandist(G)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 n=num_vertices(G);
 [D]=all_shortest_paths(double(sparse(G)));
 idx=[];

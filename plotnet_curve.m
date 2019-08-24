@@ -1,5 +1,10 @@
 function plotnet_curve(sbeG,xy,sbeNode)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<3
     % T=textscan(num2str(1:size(sbeG,1)),'%s'); sbeNode=T{1};
     sbeNode=cellfun(@num2str,num2cell(1:size(sbeG,1)),'Uniform',false);

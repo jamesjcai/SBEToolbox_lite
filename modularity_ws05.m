@@ -25,6 +25,11 @@ function q = modularity_ws05(G, s)
 % Goodman A. (Society for Industrial and Applied Mathematics,
 % Philadelphia), pp 274–285.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 
 Avv = sum(sum(G));
 

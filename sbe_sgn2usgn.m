@@ -1,5 +1,11 @@
 function A=sbe_sgn2usgn(A,b)
 % A - a matrix of correlation coefficients
+
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2
     b=2;
 end

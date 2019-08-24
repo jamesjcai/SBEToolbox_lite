@@ -4,6 +4,11 @@ function [Diam,Rad,Pv,Cv]=graph_diameter(G)
 % DIAM  - the diameter
 % RAD   - the radius
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if ~issparse(G)
     G=double(sparse(G));
 end

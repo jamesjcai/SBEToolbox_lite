@@ -1,4 +1,10 @@
 function equation = powerlawplot(Net)
+
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 % Power-Law Degree Distribution Graphing
 
 % Finds out how many connections each node has

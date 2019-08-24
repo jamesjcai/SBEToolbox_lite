@@ -1,5 +1,10 @@
 function [swidx]=smallworldindex(G1)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 [kden]=networkdensity(G1);
 G2=randnet_er(num_vertices(G1),kden/2);
 

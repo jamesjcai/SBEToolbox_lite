@@ -7,7 +7,9 @@ function A = incidence2(B)
 
 % 08 Jul 2009   - created   Ondrej Sluciak <ondrej.sluciak@nt.tuwien.ac.at>
 
-        siz = size(B); 
+
+
+siz = size(B); 
 if siz(1)~=siz(2); 
     error('B must be square'); 
 end 

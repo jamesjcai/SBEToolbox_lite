@@ -7,6 +7,11 @@ function [TOM]=sbe_adj2tom(adj,numSteps,varargin)
 % connections can always be considered as \reinforcing" the direct connection. This may not always be the
 % case, and the signed TOM is an attempt to take this into account.    
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2
     numSteps=1;
 end

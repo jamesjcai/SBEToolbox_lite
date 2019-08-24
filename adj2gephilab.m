@@ -17,6 +17,12 @@ function EdgeL=adj2gephilab(filename,ADJ,parameters)
 %
 % The two files must be open in Gephi via the Data Laboratory
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
+
 nodecsv=[filename,'_node.csv'];
 edgecsv=[filename,'_edge.csv'];
 n=size(ADJ,1); % square adjacency matrix

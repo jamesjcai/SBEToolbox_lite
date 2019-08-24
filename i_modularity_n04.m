@@ -10,3 +10,8 @@ q = modularity_ws05(G, s);
 %(da05)
 
 %This method is also called Newman's agglometrative clusering algotithm
+
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite

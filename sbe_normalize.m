@@ -1,5 +1,10 @@
 function [W]=sbe_normalize(W,varargin)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 p = inputParser;
 defaultType = 'JW02';
 validTypes = {'JW02','SM00'};
@@ -12,9 +17,9 @@ parse(p,W,varargin{:})
 degs=sum(W,2);
 switch p.Results.type
     case 'JW02'
-        D=diag(1./(degs.^0.5));        
+        D=diag(degs.^-0.5);
         W=D*W*D;
-    case 'SM00'        
+    case 'SM00'
         D=diag(1./degs);
         W=D*W;
 end

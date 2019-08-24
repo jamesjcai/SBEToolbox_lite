@@ -4,6 +4,11 @@ function viewnetprotovis(sbeG,sbeNode,sbePartition)
 % 
 % Protovis is a visualization toolkit for JavaScript using SVG.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<3
     sbePartition=[];
 end

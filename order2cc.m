@@ -3,6 +3,11 @@ function [c,cn]=order2cc(G,v)
 %
 % See also: SOFFERCC
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2    
     v=1:size(G,1);
 end

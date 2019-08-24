@@ -4,6 +4,12 @@ function [adj]=sbe_cor2adj(cor,softpwr,varargin)
 %
 % e.g., adj=sbe_cor2adj(cor,'softpower',2)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
+
 if nargin<2, error('two input parameters required.'); end
 
 p = inputParser;

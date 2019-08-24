@@ -1,5 +1,10 @@
 function [c1,c2]=graph_clustercoeff(G)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if ~issparse(G)
     Gx=sparse(G);
 end

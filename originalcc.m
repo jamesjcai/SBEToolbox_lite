@@ -4,6 +4,11 @@ function [c]=originalcc(G,n)
 %
 % See also: SOFFERCC
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2
     %error('Two parameters needed.')
     v=1:size(G,1);

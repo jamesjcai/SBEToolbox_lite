@@ -11,7 +11,12 @@ function [moduleid]=mcode(sbeG,threshold)
 % $LastChangedDate: 2012-12-28 19:01:43 -0600 (Fri, 28 Dec 2012) $
 % $LastChangedRevision: 278 $
 % $LastChangedBy: konganti $
-%
+
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite%
+
 
 if (nargin<2)
       threshold=0.3;

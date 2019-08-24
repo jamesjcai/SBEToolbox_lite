@@ -8,6 +8,11 @@ function [GTOM,bm]=sbe_gtom(A,numSteps)
 % as illustrated in appendix A (Figure 15).
 % http://dibernardo.tigem.it/files/papers/2008/zhangbin-statappsgeneticsmolbio.pdf
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2
     numSteps=1;
 end

@@ -7,6 +7,10 @@ function cytoscaperun(sbeG,sbeNode)
 % visualizing molecular interaction networks and integrating these
 % interactions with gene expression profiles and other state data. 
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 [exedir,dlgshown]=pge_getprgmdir(sprintf('%s_prgmdir',mfilename));
 if isempty(exedir)||dlgshown, return; end

@@ -18,6 +18,10 @@ function [nodesI,nodesAverageI] = current_info_flow(connectMatrix,condOrRes,show
 % stamp the matrix of Resistors (only needs to be done once)
 % matrix of resistaors, size same as connectMatrix
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 if nargin<3
     showwaitbar=false;

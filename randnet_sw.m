@@ -3,6 +3,11 @@ function [sbeG,sbeNode]=randnet_sw(n,p)
 %
 %[sbeG,sbeNode]=randnet_sw(n,p)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 seed =[0 1 0 0 1;1 0 0 1 0;0 0 0 1 0;0 1 1 0 0;1 0 0 0 0];
 sbeG=logical(i_SFNG(n, p, seed));
 

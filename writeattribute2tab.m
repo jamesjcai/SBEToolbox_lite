@@ -1,6 +1,10 @@
 function writeattribute2tab(data,nodename,filename,format)
 %WRITEATTRIBUTE2TAB - Writes data in tabular form to the file system.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 if nargin < 4
    format = '%f';

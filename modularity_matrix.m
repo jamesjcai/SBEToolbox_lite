@@ -40,6 +40,11 @@ function [B] = modularity_matrix(G)
 % by: M. E. J. Newman
 % (17 Feb 2006)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 
         n = length(G);
         deg = sum(G,1);

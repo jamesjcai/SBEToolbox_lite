@@ -22,3 +22,7 @@ q = modularity_ws05(G, s);
 % of the same quantity in a network with the sae assignment of nodes into
 % modules but random connections between the nodes.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite

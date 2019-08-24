@@ -8,6 +8,11 @@ function [t]=richclub_coefficient(G,k)
 % REF: Colizza et al. Nature Physicas 2006
 % http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0000335#s2
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 t=nan(1,length(k));
 vect_k=sum(G);
 

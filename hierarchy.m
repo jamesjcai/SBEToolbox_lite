@@ -6,6 +6,11 @@ function h = hierarchy(G)
 %
 % Graph is assumed as undirected.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if directed(G)
     error('Graph must be undirected.');
 end

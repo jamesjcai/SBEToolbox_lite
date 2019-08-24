@@ -26,6 +26,12 @@ function q = modularity_n06(G,s)
 % M. E. J. Newman*
 % http://www.pnas.org/content/103/23/8577.full.pdf+html
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
+
 if nargin<2
     n=size(G,1);
     s = (rand(1,n) > rand)*2-1;

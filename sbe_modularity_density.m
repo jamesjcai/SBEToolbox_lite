@@ -1,6 +1,6 @@
-function [A]=symmetrizeadjmat(A)
-A=max(A,A');
-%http://www.stanford.edu/~dgleich/programs/matlab_bgl/faq.html
+% modularity density
+% https://ieeexplore.ieee.org/document/8353344
+
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai

@@ -7,7 +7,10 @@ function A = incidence(B)
 
 % 08 Jul 2009   - created   Ondrej Sluciak <ondrej.sluciak@nt.tuwien.ac.at>
 
-        
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite        
 
 [M1,M2] = size(B);
 

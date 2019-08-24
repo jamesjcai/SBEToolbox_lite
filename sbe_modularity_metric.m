@@ -18,6 +18,11 @@
 % GB: last updated, October 16, 2012
 %##################################################################
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 function Q=sbe_modularity_metric(adj,modules)
 
 nedges=numEdges(adj); % total number of edges

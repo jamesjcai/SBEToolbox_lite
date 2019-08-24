@@ -15,6 +15,11 @@ function [nc]=neighborhood_conn(G,v)
 % distribution to comparecorrelation patterns in interaction and regulatory
 % networks.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2
     v=1:size(G,1);
 end

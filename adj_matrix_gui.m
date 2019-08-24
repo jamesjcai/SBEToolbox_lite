@@ -3,6 +3,10 @@ function adj_matrix_gui(action)
 % Opens a figure.  Double click to create a vertex. Single click to
 % connect vertices.  Right click to delete vertices or edges.
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 if nargin == 0
     action = 'init';

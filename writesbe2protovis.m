@@ -1,6 +1,11 @@
 function writesbe2protovis(sbeG,sbeNode,sbePartition,filename)
 % writesbe2protovis(sbeG,sbeNode,sbePartition,filename)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<4
         [filename, pathname,filterindex] = uiputfile( ...
            {'*.js', 'Javascript Files (*.js)';

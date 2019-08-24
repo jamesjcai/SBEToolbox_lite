@@ -1,4 +1,10 @@
 function [dissTOMC1C2]=sbe_diffcoex(adj1,adj2,vbeta)
+
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<2
     vbeta=2;
 end

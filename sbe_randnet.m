@@ -1,5 +1,11 @@
 function [A]=sbe_randnet(n,p,varargin)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
+
 psr = inputParser;
 defaultType = 'sw';
 validTypes = {'sw','er'};

@@ -6,6 +6,11 @@ function [d]=within_module_degree(G,s,isnormalized)
 %ref: http://www.nature.com/nature/journal/v433/n7028/full/nature03288.html
 % See also: PARTICIPATION_COEFFICIENT
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin<3
     isnormalized=true;
 end

@@ -1,5 +1,10 @@
 function nc=sbe_num_conncomp(adj)
 
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 s=sbe_graph_spectrum(adj);
 nc=numel(find(s<10^(-5)));   % zero eigenvalues are sometimes close to zeros numerically
 

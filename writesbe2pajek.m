@@ -1,5 +1,11 @@
 function writesbe2pajek(sbeG,sbeNode,sbePartition,saveaspaj,filename)
-%writesbe2pajek(sbeG,sbeNode,sbePartition,saveaspaj,filename)
+% writesbe2pajek(sbeG,sbeNode,sbePartition,saveaspaj,filename)
+
+% Systems Biology & Evolution Toolbox
+% Author: James Cai
+% Email: jcai@tamu.edu
+% Website: https://github.com/jamesjcai/SBEToolbox_lite
+
 if nargin < 5
     if saveaspaj
        [filename, pathname,filterindex] = uiputfile( ...
