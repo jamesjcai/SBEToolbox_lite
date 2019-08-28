@@ -1,4 +1,4 @@
-function [W]=sbe_normalize(W,varargin)
+function [W]=sbe_normalize_adjacency(W,varargin)
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai

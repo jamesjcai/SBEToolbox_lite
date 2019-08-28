@@ -1,12 +1,12 @@
-function s=sbe_graph_spectrum(adj)
+function d=sbe_graph_spectrum(A)
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-[~,D]=eig(sbe_laplacian_matrix(adj));
-s=sort(diag(D),'descend');
+[~,D]=eig(sbe_laplacian_matrix(A));
+d=sort(diag(D),'descend');
 
 %##################################################################
 % The eigenvalues of the Laplacian of the graph.

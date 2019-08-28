@@ -15,7 +15,7 @@
 % 
 % Copyright by Chun-Guang Li
 % May 14, 2014.
-function [k, p1, p2, p3] = detect_num_subspaces(s, L, opt)
+function [k, p1, p2, p3] = sbe_detect_num_subspaces(s, L, opt)
 if nargin < 3
     opt.alg ='SpectralGap';
 end

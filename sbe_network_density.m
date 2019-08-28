@@ -1,10 +1,9 @@
-function [kden]=networkdensity(sbeG)
+function [d]=sbe_network_density(sbeG)
 % Systems Biology & Evolution Toolbox
 % Author: James Cai
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-K=num_edges(sbeG);
-N=num_vertices(sbeG);
-
-kden = K/((N^2-N)/2);
+k=num_edges(sbeG);
+n=num_vertices(sbeG);
+d=2*k/(n.^2-n);

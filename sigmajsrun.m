@@ -15,7 +15,7 @@ function url = sigmajsrun(sbeG,sbeNode,xy)
 input_file = 'addins/sigmajs/input.xml';
 
 if ~issymnet(sbeG)
-    [sbeG]=symmetrizeadjmat(sbeG);
+    [sbeG]=sbe_symmetrize_adjacency(sbeG);
 end
 
 writesbe2xml(sbeG,sbeNode,input_file,xy)

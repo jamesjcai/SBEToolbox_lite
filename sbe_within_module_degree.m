@@ -1,4 +1,4 @@
-function [d]=within_module_degree(G,s,isnormalized)
+function [d]=sbe_within_module_degree(G,s,isnormalized)
 %WITHIN_MODULE_DEGREE - within module degree
 %
 % [d]=within_module_degree(G,s,isnormalized)

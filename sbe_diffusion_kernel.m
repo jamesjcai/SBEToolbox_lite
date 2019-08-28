@@ -1,4 +1,4 @@
-function k = sbe_dkernel(g, beta)
+function k = sbe_diffusion_kernel(g, beta)
 % Return diffusion kernel 
 %
 %   K = DKERNEL(G, BETA) return diffusion kernel of given diffusion
@@ -12,6 +12,6 @@ function k = sbe_dkernel(g, beta)
 % 6/6/2009
 
 narginchk(2, 2);
-[u, s, v] = svd(full(sbe_laplacian(g)));
+[u, s, v] = svd(full(sbe_laplacian_matrix(g)));
 % u and v is the same since laplacian is symetric.
 k = u * diag(beta * degree(g)) * v;

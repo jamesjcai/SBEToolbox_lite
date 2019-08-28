@@ -13,7 +13,7 @@ diff=eps;
 
 [~,L]=sbe_laplacian_matrix(A);
 
-[V,~]=eigs(L,3,diff);    % diff = Sigma Value Near Eigenvalue
+[V,~]=eigs(L,k,diff);    % diff = Sigma Value Near Eigenvalue
 % opts.tol = 1e-2;
 %[V,~]=eigs(L,k,'sr',opts);
 %[V,~]=eigs(L,k,'sm',opts);

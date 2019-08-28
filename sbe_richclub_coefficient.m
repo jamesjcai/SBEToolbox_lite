@@ -1,4 +1,4 @@
-function [t]=richclub_coefficient(G,k)
+function [t]=sbe_richclub_coefficient(G,k)
 %RICHCLUBCOEF - computes rich-club coefficient
 %
 % t(k) = 2*Ek/(Nk*(Nk-1)), where 

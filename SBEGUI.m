@@ -551,7 +551,7 @@ end
 if ~issymnet(sbeG)
     sbeG_ori=sbeG;
     sbeNode_ori=sbeNode;
-    [sbeG]=symmetrizeadjmat(sbeG);
+    [sbeG]=sbe_symmetrize_adjacency(sbeG);
     msgbox('Adjacency matrix (sbeG) has been symmetrized.','help');
 end
 
