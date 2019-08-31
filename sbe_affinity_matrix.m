@@ -1,5 +1,7 @@
 function A=sbe_affinity_matrix(X,methodid)
-
+if nargin<2
+    methodid=1;
+end
 switch methodid
     case 1
         A=full(compute_alpha_kernel_sparse(X));
