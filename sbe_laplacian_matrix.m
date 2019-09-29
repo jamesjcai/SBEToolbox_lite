@@ -19,7 +19,20 @@ function [L,Lnorm] = sbe_laplacian_matrix(A)
 % https://github.com/hungrydoggy/Pinocchio/blob/5664503b210005fa4f1fc053e237ba3ecf6a7945/skeletonizer/matlab/toolbox/compute_mesh_laplacian.m
 % https://github.com/fljohnston1/otto-group-product/blob/02a6f35f8c144ed52a2097a1965d561172f2e701/SpectralClustering.m
 
-D=sum(A);
+%{
+A=[  0     1     0     1     0     0     0     0     0
+     1     0    -1     1    -1     0     0     1     0
+     0    -1     0     0     1     1     0     0     0
+     1     1     0     0    -1     0     1     1     0
+     0    -1     1    -1     0     1     0    -1     1
+     0     0     1     0     1     0     0    -1     1
+     0     0     0     1     0     0     0     1     0
+     0     1     0     1    -1    -1     1     0    -1
+     0     0     0     0     1     1     0    -1     0];
+
+%}
+
+D=sum(abs(A));    %
 L=diag(D)-A;
 if nargout>1
     D(D~=0)=sqrt(1./D(D~=0));
