@@ -8,6 +8,8 @@ function [L,Lnorm] = sbe_laplacian_matrix(A)
 %
 % See also: adjacency
 % L = diag(sum(A)) - A;
+%
+% see also: internal.stats.spectraleigs
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai
