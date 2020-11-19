@@ -21,7 +21,8 @@ function [sbeG,sbeNode]=randnet_er(n,p)
 sbeG=triu(rand(n)<p,1);
 %A = sparse(A);
 sbeG=sbeG|sbeG';
-sbeNode=strread(num2str(1:size(sbeG,1)),'%s');
+sbeNode=sprintfc('%d',1:n);
+% sbeNode=strread(num2str(1:size(sbeG,1)),'%s');
 
 %for k=1:n, sbeNode{k}=sprintf('Node%d',k); end
 %if nargin<1 n=10; end
