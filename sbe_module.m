@@ -19,14 +19,14 @@ switch method
     case 2
         [moduleid]=mcode(sbeG);
     case 3
-        g = mcl(sbeG, 2, 2, 0, false);
+        g = mcl(sbeG, 2, 2, 0, false, 20);
         [moduleid]=i_net2moduleid(g);
 end
 
 
 function [moduleid]=i_net2moduleid(deduced_net)
     
-    moduleid=zeros(1,size(full_deduced_net, 1));
+    moduleid=zeros(1,size(deduced_net, 1));
     full_deduced_net = unique(full(deduced_net), 'rows');
     cluster_id=0;
            for k = 1:size(full_deduced_net, 1);
