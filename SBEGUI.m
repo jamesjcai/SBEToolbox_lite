@@ -62,6 +62,7 @@ sbepath=fileparts(which(mfilename));
 addpath([sbepath,filesep,'bgl']);
 %cdsbe;
 SetMenuStatus(handles);
+movegui(hObject, 'center');
 
 % UIWAIT makes SBEGUI wait for user response (see UIRESUME)
 % uiwait(handles.SBEToolboxGUI);
