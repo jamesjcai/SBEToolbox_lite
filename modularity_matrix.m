@@ -46,17 +46,16 @@ function [B] = modularity_matrix(G)
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 
-        n = length(G);
-        deg = sum(G,1);
-        m = sum(deg)/2;
-        B = zeros(size(G));
-        for k1 = 1:n
-           for k2 = 1:n
-                B(k1, k2) = G(k1, k2) - deg(k1) * deg(k2) / (2 * m);
-            end
-        end
-        
+n = length(G);
+deg = sum(G, 1);
+m = sum(deg) / 2;
+B = zeros(size(G));
+for k1 = 1:n
+    for k2 = 1:n
+        B(k1, k2) = G(k1, k2) - deg(k1) * deg(k2) / (2 * m);
+    end
+end
 
-B2=G-(deg'*deg)/(2*m);
-isequal(B,B2)
 
+B2 = G - (deg' * deg) / (2 * m);
+isequal(B, B2)

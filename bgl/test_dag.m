@@ -1,4 +1,4 @@
-function dag = test_dag(A,varargin)
+function dag = test_dag(A, varargin)
 % TEST_DAG Tests if a graph is directed and acyclic
 %
 % dag = test_dag(A) returns 1 if A is the adjacency matrix for a dag and
@@ -16,9 +16,10 @@ function dag = test_dag(A,varargin)
 % Copyright, Stanford University, 2007-2008
 
 %% History
+
 %%
 
 dag = 1;
-if isempty(topological_order(A,varargin{:}))
+if isempty(topological_order(A, varargin{:}))
     dag = 0;
 end

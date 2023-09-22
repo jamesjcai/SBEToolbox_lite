@@ -4,14 +4,13 @@
 % examine the runtime behavior we will use a visitor which outputs a string
 % every time a function is called.
 
-
 %% Setup
 % To begin, we load a graph.
 
 load ../graphs/clr-25-2.mat
 
 %%
-% Next, let's check the documentation to see which functions to implement 
+% Next, let's check the documentation to see which functions to implement
 % for the visitor
 
 help dijkstra_sp
@@ -26,18 +25,18 @@ help dijkstra_sp
 % one helper that returns a vertex visitor function and one helper than
 % returns an edge visitor function.
 
-vertex_vis_print_func = @(str) @(u) ...
+vertex_vis_print_func = @(str)@(u) ...
     fprintf('%s called on %s\n', str, char(labels{u}));
-edge_vis_print_func = @(str) @(ei,u,v) ...
+edge_vis_print_func = @(str)@(ei, u, v) ...
     fprintf('%s called on (%s,%s)\n', str, char(labels{u}), char(labels{v}));
 
-%% 
+%%
 % These anonymous functions return functions themselves.
 
 ev_func = vertex_vis_print_func('examine_vertex');
 ev_func(1)
 
-%% 
+%%
 % I hope you see how these functions are useful in saving quite a bit of
 % typing.
 
@@ -55,9 +54,9 @@ vis.edge_relaxed = edge_vis_print_func('edge_relaxed');
 vis.edge_not_relaxed = edge_vis_print_func('edge_not_relaxed');
 
 %%
-% With the visitor setup, there is hardly any work left.  
+% With the visitor setup, there is hardly any work left.
 
-dijkstra_sp(A,1,struct('visitor', vis));
+dijkstra_sp(A, 1, struct('visitor', vis));
 
 %% Understanding the output
 % To understand the output, we find it helpful to have a copy of
@@ -71,10 +70,10 @@ dijkstra_sp(A,1,struct('visitor', vis));
 % documentation.  Once it is resolved, we will update the MatlabBGL
 % documentation to match the Boost graph library.
 %
-% The results: discover_vertex is called before examine_vertex.  For the 
+% The results: discover_vertex is called before examine_vertex.  For the
 % edges, examine_edge is always called before either edge_relaxed
 % or edge_not_relaxed.  The edges that are relaxed are the shaded edges in
 % Figure 25-5.
 %
 % Finally, finish vertex is called on a vertex after all of its edges have
-% been examined and possibly relaxed.  
+% been examined and possibly relaxed.

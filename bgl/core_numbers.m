@@ -1,8 +1,8 @@
-function [cn rt] = core_numbers(A,varargin)
+function [cn, rt] = core_numbers(A, varargin)
 % CORE_NUMBERS Compute the core numbers of the vertices in the graph.
 %
 % [cn rt] = core_numbers(A) returns the core number (cn) of each vertex.
-% The core number is the largest integer c such 
+% The core number is the largest integer c such
 % that vertex v exists in a graph where all vertices have degree >= c.
 % The vector rt returns the removal time for each vertex.  That
 % is, vertex vi was removed at step rt[vi].
@@ -13,16 +13,16 @@ function [cn rt] = core_numbers(A,varargin)
 % The runtime is O(E) for unweighted graphs and O((N+M) log N) for weighted
 % graphs.  The default is the *unweighted version* which ignores egde
 % weights.  For weighted graphs, the definition is the same, but the
-% in-degree is the weighted in-degree and is the sum of weight of 
+% in-degree is the weighted in-degree and is the sum of weight of
 % incoming edges.
 %
 % To get the out-degree core_numbers, call core_numbers(A') instead;
 %
 % ... = core_numbers(A,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
-%   options.unweighted: an optional switch to perform the weighted 
-%       computation [0 | {1}]  
+% for the standard options.
+%   options.unweighted: an optional switch to perform the weighted
+%       computation [0 | {1}]
 %   options.edge_weight: a double array over the edges with an edge
 %       weight for each node, see EDGE_INDEX and EXAMPLES/REWEIGHTED_GRAPHS
 %       for information on how to use this option correctly
@@ -32,9 +32,9 @@ function [cn rt] = core_numbers(A,varargin)
 % which does not depend upon the non-zero values of A, but
 % only uses the non-zero structure of A.  This veers from the MatlabBGL
 % default of using weighted computations to preserve the standard
-% definition of cores for directed and undirected graphs.  
+% definition of cores for directed and undirected graphs.
 %
-% Example: 
+% Example:
 %    load graphs/cores_example.mat
 %    core_numbers(A)
 
@@ -49,13 +49,14 @@ function [cn rt] = core_numbers(A,varargin)
 %  2007-07-30: Removed size option from output
 %    Added removal time output
 %  2008-10-07: Changed options parsing
+
 %%
 
-[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
+[trans, check, full2sparse] = get_matlab_bgl_options(varargin{:});
 if full2sparse && ~issparse(A), A = sparse(A); end
 
 options = struct('unweighted', 1, 'edge_weight', 'matrix');
-options = merge_options(options,varargin{:});
+options = merge_options(options, varargin{:});
 
 % edge_weights is an indicator that is 1 if we are using edge_weights
 % passed on the command line or 0 if we are using the matrix.
@@ -72,9 +73,9 @@ end
 if (check)
     % check the values
     if options.unweighted ~= 1 && edge_weights ~= 1
-        check_matlab_bgl(A,struct('values',1));
+        check_matlab_bgl(A, struct('values', 1));
     else
-        check_matlab_bgl(A,struct());
+        check_matlab_bgl(A, struct());
     end
 end
 
@@ -87,9 +88,7 @@ else
     weight_arg = 0;
 end
 
-[cn rt] = core_numbers_mex(A,weight_arg);
+[cn, rt] = core_numbers_mex(A, weight_arg);
 % if nargin > 2 && options.unweighted
 %     sizes = accumarray([cn+1 ones(length(cn),1)],1);
 % end
-
-

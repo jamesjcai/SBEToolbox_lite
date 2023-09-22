@@ -2,57 +2,57 @@
 % In this example, we will use the MatlabBGL library to compute the
 % red-black ordering of a matrix.  For certain matrices, the red-black
 % ordering does not exist, but if a red-black ordering exists, then this
-% algorithm will find it.  
-% 
+% algorithm will find it.
+%
 % A matrix has a red-black ordering if the directed graph of the matrix
 % elements is bipartite.  To find a bipartite ordering of the matrix, we
-% will use the MatlabBGL |bfs| command.  
+% will use the MatlabBGL |bfs| command.
 
 %% Generating a Matrix
 % If you already have a matrix you want to use, you can skip this step.
 % First, we generate a second order finite difference approximation to the
 % Laplacian operator on a rectangular domain.  This matrix does have a
-% red-black ordering.  
+% red-black ordering.
 
 %%
 % n is the number of points used to discretize each dimension.
 % N is the total number rows and columns in the matrix/graph.
 
 n = 55;
-N = n*n;
+N = n * n;
 
 %%
 % This set of commands creates a pentadiagonal matrix.
 
-A = delsq(numgrid('S',n+2));
+A = delsq(numgrid('S', n+2));
 
-%% 
+%%
 % Now we visualize the matrix.
 
 spy(A)
 
 %%
 % The matrix A we just created is block tridiagonal, although this is
-% (perhaps) not obvious from the plot.  
+% (perhaps) not obvious from the plot.
 %
-% We know, analytically, that this matrix has a red black ordering given 
+% We know, analytically, that this matrix has a red black ordering given
 % by the odd points and then the even points, when indexed in the current
 % order.
 
-p = [1:2:N 2:2:N];
-spy(A(p,p));
+p = [1:2:N, 2:2:N];
+spy(A(p, p));
 
 %%
 % Usually, it's a little easier to see a red-black ordering using the
 % following command.
 
-spy(A(p,p) - diag(diag(A(p,p))));
-hold on; 
-plot([size(A,2)/2 size(A,2)/2],[0 size(A,1)], 'k-');
-plot([0 size(A,2)],[size(A,1)/2 size(A,1)/2], 'k-');
+spy(A(p, p)-diag(diag(A(p, p))));
+hold on;
+plot([size(A, 2) / 2, size(A, 2) / 2], [0, size(A, 1)], 'k-');
+plot([0, size(A, 2)], [size(A, 1) / 2, size(A, 1) / 2], 'k-');
 hold off;
 
-%% 
+%%
 % Now we can see that a matrix with a red-black ordering only has non-zero
 % dots in the upper right and lower left boxes.
 
@@ -76,28 +76,28 @@ hold off;
 % distance each vertex is from the root.  Because we really do not care,
 % we'll choose vertex 1 (row 1) of the matrix as the root vertex.
 
-d = bfs(A,1);
+d = bfs(A, 1);
 
-%% 
+%%
 % Now we find the even and odd partitions
 
-d_even = find(mod(d,2) == 0);
-d_odd = find(mod(d,2) == 1);
+d_even = find(mod(d, 2) == 0);
+d_odd = find(mod(d, 2) == 1);
 
 %%
 % Getting the actual permutation of the matrix is simple, we list the odd
 % vertices and then the even vertices
 
-p = [d_odd' d_even'];
+p = [d_odd', d_even'];
 
-%% 
+%%
 % Computing the same plot shows we found the red-black ordering!
 
-spy(A(p,p) - diag(diag(A(p,p))));
-hold on; 
-plot([size(A,2)/2 size(A,2)/2],[0 size(A,1)], 'k-');
-plot([0 size(A,2)],[size(A,1)/2 size(A,1)/2], 'k-');
+spy(A(p, p)-diag(diag(A(p, p))));
+hold on;
+plot([size(A, 2) / 2, size(A, 2) / 2], [0, size(A, 1)], 'k-');
+plot([0, size(A, 2)], [size(A, 1) / 2, size(A, 1) / 2], 'k-');
 hold off;
 
-%% 
+%%
 % and that's it!  MatlabBGL and the |bfs| command made this problem simple!

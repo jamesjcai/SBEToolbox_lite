@@ -1,5 +1,5 @@
-function [trans check full2sparse] = get_matlab_bgl_options(varargin)
-% 
+function [trans, check, full2sparse] = get_matlab_bgl_options(varargin)
+%
 % Internal private function.
 %
 % Example:
@@ -8,11 +8,12 @@ function [trans check full2sparse] = get_matlab_bgl_options(varargin)
 
 %% History
 %  2008-09-26: Changed to use merge_options instead
+
 %%
 
 doptions = set_matlab_bgl_default();
-if nargin>0
-    options = merge_options(doptions,varargin{:});
+if nargin > 0
+    options = merge_options(doptions, varargin{:});
 else
     options = doptions;
 end
@@ -20,4 +21,3 @@ end
 trans = ~options.istrans;
 check = ~options.nocheck;
 full2sparse = options.full2sparse;
-

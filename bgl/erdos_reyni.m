@@ -1,4 +1,4 @@
-function A=erdos_reyni(n,p)
+function A = erdos_reyni(n, p)
 % ERDOS_REYNI Generates a random Erdos-Reyni (Gnp) graph
 %
 % A=erdos_reyni(n,p) generates a random Gnp graph with n vertices and where
@@ -16,9 +16,9 @@ function A=erdos_reyni(n,p)
 %% History
 %  2006-05-21: Initial version
 %  2007-04-05: Fixed the function so it returns correct output.
+
 %%
 
-A = triu(rand(n)<p,1);
+A = triu(rand(n) < p, 1);
 A = sparse(A);
-A = A+A';
-
+A = A + A';

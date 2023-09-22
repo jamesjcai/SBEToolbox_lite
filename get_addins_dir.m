@@ -10,12 +10,12 @@ function [path_slash, addins_dir] = get_addins_dir
 % $LastChangedBy: konganti $
 %
 
-curr_path=fileparts(which(mfilename));
+curr_path = fileparts(which(mfilename));
 
 addins_dir = strcat(curr_path, filesep, 'addins', filesep);
 
 if exist(addins_dir, 'dir') ~= 7
-    addins_dir = strcat(regexprep(curr_path, '^(.+?)[\/|\\]+\w+$', '$1'),...
+    addins_dir = strcat(regexprep(curr_path, '^(.+?)[\/|\\]+\w+$', '$1'), ...
         filesep, 'addins', filesep);
     addins_dir = ['"', addins_dir, '"'];
 end

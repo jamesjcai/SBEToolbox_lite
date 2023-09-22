@@ -8,8 +8,8 @@ function [S, V] = quickCorr(A)
 % compute corr = V*S*S*V';
 
 % Anorm = A-repmat(mean(A,1),[size(A,1),1]);
-Anorm = A-mean(A,1);
+Anorm = A - mean(A, 1);
 %Anorm=Anorm./repmat(sqrt(sum(Anorm.^2,1)),[size(A,1),1]);
-Anorm=Anorm./vecnorm(Anorm);
+Anorm = Anorm ./ vecnorm(Anorm);
 
-[U,S,V]=svd(Anorm,'econ');
+[U, S, V] = svd(Anorm, 'econ');

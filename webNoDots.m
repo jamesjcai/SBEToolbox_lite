@@ -1,4 +1,4 @@
-function varargout=webNoDots(varargin)
+function varargout = webNoDots(varargin)
 %WEB Open Web browser on site or files.
 %   WEB opens up an empty internal web browser.  The default internal web
 %   browser includes a toolbar with standard web browser icons, and an address
@@ -95,19 +95,19 @@ if strncmp(html_file, 'matlab:', 7)
     return;
 end
 
-if ~options.useSystemBrowser && usejava('mwt') && ~strncmp(html_file,'mailto:',7)
+if ~options.useSystemBrowser && usejava('mwt') && ~strncmp(html_file, 'mailto:', 7)
     % If in Java environment, use the MATLAB web browser for everything
     % other than mailto.
     [activeBrowser, html_file] = openMatlabBrowser(html_file, options);
     if nargout > 0
-        varargout = {0 activeBrowser html_file};
+        varargout = {0, activeBrowser, html_file};
     end
     return;
 elseif ~usejava('mwt') && helpUtils.isUnderDocroot(html_file)
-    displayWarningMessage('MATLAB:web:NoHelpBrowser', getString(message('MATLAB:web:NoHelpBrowser')),...
+    displayWarningMessage('MATLAB:web:NoHelpBrowser', getString(message('MATLAB:web:NoHelpBrowser')), ...
         options.showWarningInDialog);
     if nargout > 0
-        varargout = {1 [] ''};
+        varargout = {1, [], ''};
     end
     return;
 end
@@ -116,7 +116,7 @@ end
 
 % If no URL is specified with system browser, complain and exit.
 if isempty(html_file)
-    displayWarningMessage('MATLAB:web:NoURL', getString(message('MATLAB:web:NoURL')),...
+    displayWarningMessage('MATLAB:web:NoURL', getString(message('MATLAB:web:NoURL')), ...
         options.showWarningInDialog);
     if nargout > 0
         varargout(1) = {1};
@@ -124,7 +124,7 @@ if isempty(html_file)
     return;
 end
 
-% We'll only issue a warning for a system error if we will not be 
+% We'll only issue a warning for a system error if we will not be
 % returning a status code.
 options.warnOnSystemError = nargout == 0;
 
@@ -202,7 +202,7 @@ if ~isempty(html_file)
         else
             % If the file is referenced as a relative path, get the fully
             % qualified filename.
-            fullpath = fullfile(pwd,html_file);
+            fullpath = fullfile(pwd, html_file);
             if isOnFileSystem(fullpath)
                 html_file = fullpath;
             end
@@ -222,13 +222,13 @@ options.useHelpBrowser = options.useHelpBrowser || helpUtils.isUnderDocroot(html
 
 % If no protocol specified, or an absolute/UNC pathname is not given,
 % include explicit 'http:'.  Otherwise the web browser assumes 'file:'
-if ~isempty(html_file) && isempty(strfind(html_file,':')) && ~strcmp(html_file(1:2),'\\') && ~strcmp(html_file(1),'/')
-    html_file = ['http://' html_file];
+if ~isempty(html_file) && isempty(strfind(html_file, ':')) && ~strcmp(html_file(1:2), '\\') && ~strcmp(html_file(1), '/')
+    html_file = ['http://', html_file];
 end
 
 % The file should be displayed inside the help browser
 if options.useHelpBrowser
-    if strncmp(html_file,'text://',7)
+    if strncmp(html_file, 'text://', 7)
         com.mathworks.mlservices.MLHelpServices.setHtmlText(html_file(8:end));
     else
         com.mathworks.mlservices.MLHelpServices.setCurrentLocation(html_file);
@@ -243,9 +243,9 @@ else
         % If there is no active browser, create a new one.
         activeBrowser = com.mathworks.mde.webbrowser.WebBrowser.createBrowser(options.showToolbar, options.showAddressBox);
     end
-    
+
     if ~isempty(html_file)
-        if strncmp(html_file,'text://',7)
+        if strncmp(html_file, 'text://', 7)
             activeBrowser.setHtmlText(html_file(8:end));
         else
             activeBrowser.setCurrentLocation(html_file);
@@ -262,7 +262,7 @@ function stat = openMacBrowser(html_file)
 % Escape some special characters.  We're eventually going to shell out,
 % and  while some shells (such as bash) can handle the characters,
 % some others (such as tcsh) can't.
-html_file = regexprep(html_file, '[?&!();]','\\$0');
+html_file = regexprep(html_file, '[?&!();]', '\\$0');
 
 % Since we're opening the system browser using the NextStep open command,
 % we must specify a syntactically valid URL, even if the user didn't
@@ -272,22 +272,22 @@ if isempty(html_file)
 else
     % If no protocol specified, or an absolute/UNC pathname is not given,
     % include explicit 'http:'.  MAC command needs the http://.
-    if isempty(strfind(html_file,':')) && ~strcmp(html_file(1:2),'\\') && ~strcmp(html_file(1),'/')
-        html_file = ['http://' html_file];
+    if isempty(strfind(html_file, ':')) && ~strcmp(html_file(1:2), '\\') && ~strcmp(html_file(1), '/')
+        html_file = ['http://', html_file];
     end
 end
-unix(['open ' html_file]);
+unix(['open ', html_file]);
 stat = 0;
 end
 
 %--------------------------------------------------------------------------
-function stat = openUnixBrowser(html_file,options)
+function stat = openUnixBrowser(html_file, options)
 stat = 0;
 
 % Get the system browser and options from the preferences.
 doccmd = system_dependent('getpref', 'HTMLSystemBrowser');
 unixOptions = system_dependent('getpref', 'HTMLSystemBrowserOptions');
-unixOptions = unixOptions(2:end);  % Strip off the S
+unixOptions = unixOptions(2:end); % Strip off the S
 
 if isempty(doccmd)
     % The preference has not been set from the preferences dialog, so use the default.
@@ -307,7 +307,7 @@ else
     % Use 'which' to determine if the user's browser exists, since we
     % can't catch an accurate status when attempting to start the
     % browser since it must be run in the background.
-    [status,output] = unix(['which ' doccmd]);
+    [status, output] = unix(['which ', doccmd]);
     if status ~= 0
         handleWarning('MATLAB:web:BrowserNotFound', ...
             sprintf('MATLAB was unable to launch your System web browser:\n\n%s\n\nTo configure your System web browser, type "preferences(''Web'')" to display the Preferences dialog.', ...
@@ -323,51 +323,51 @@ if stat == 0
     [~, shellname] = fileparts(shell);
     %construct shell specific command
     if isequal(shellname, 'tcsh') || isequal(shellname, 'csh')
-        shellarg ='>& /dev/null &';
-    elseif isequal(shellname,'sh') || isequal(shellname, 'ksh') || isequal(shellname, 'bash')
-        shellarg ='> /dev/null 2>&1 & ';
+        shellarg = '>& /dev/null &';
+    elseif isequal(shellname, 'sh') || isequal(shellname, 'ksh') || isequal(shellname, 'bash')
+        shellarg = '> /dev/null 2>&1 & ';
     else
-        shellarg ='& ';
+        shellarg = '& ';
     end
-    
+
     % Need to escape ! on UNIX
-    html_file = regexprep(html_file, '!','\\$0');
-    
+    html_file = regexprep(html_file, '!', '\\$0');
+
     % For the system browser, always send a file: URL
-    if isOnFileSystem(html_file) && ~strcmp(html_file(1:5),'file:')
-        html_file = ['file://' html_file];
+    if isOnFileSystem(html_file) && ~strcmp(html_file(1:5), 'file:')
+        html_file = ['file://', html_file];
     end
-    
-    comm = [doccmd ' ' unixOptions ' -remote "openURL(' html_file ')" ' shellarg];
-    
+
+    comm = [doccmd, ' ', unixOptions, ' -remote "openURL(', html_file, ')" ', shellarg];
+
     % separate the path from the filename for netscape
-    [~,fname]=fileparts(doccmd);
-    
+    [~, fname] = fileparts(doccmd);
+
     % Initialize status
     status = 1;
-    
+
     % If netscape is the system browser, we can look for a lock file
     % which indicates that netscape is currently running, so we can
     % open the html_file in an existing session.
-    if ~isempty(regexpi(fname, '^netscape', 'once')) 
+    if ~isempty(regexpi(fname, '^netscape', 'once'))
         % We need to explicitly use /bin/ls because ls might be aliased to ls -F
-        lockfile = [getenv('HOME') '/.netscape/lock' sprintf('\n')];
-        [~,result]=unix(['/bin/ls ' lockfile]);
-        if ~isempty(strfind(result,lockfile))
+        lockfile = [getenv('HOME'), '/.netscape/lock', sprintf('\n')];
+        [~, result] = unix(['/bin/ls ', lockfile]);
+        if ~isempty(strfind(result, lockfile))
             % if the netscape lock file exists than try to open
             % html_file in an existing netscape session
             status = unix(comm);
         end
     end
-    
+
     if status
         % browser not running, then start it up.
-        comm = [doccmd ' ' unixOptions ' ''' html_file ''' ' shellarg];
-        [status,output] = unix(comm);
+        comm = [doccmd, ' ', unixOptions, ' ''', html_file, ''' ', shellarg];
+        [status, output] = unix(comm);
         if status
             stat = 1;
         end
-        
+
         %
         % if waitForNetscape is nonzero, hang around in a loop until
         % netscape launches and connects to the X-server.  I do this by
@@ -376,17 +376,17 @@ if stat == 0
         % no-op to test for netscape being alive and running.
         %
         if options.waitForNetscape,
-            comm = [doccmd ' ' unixOptions ' -remote "undefined-key()" ' shellarg];
+            comm = [doccmd, ' ', unixOptions, ' -remote "undefined-key()" ', shellarg];
             while ~status,
                 status = unix(comm);
                 pause(1);
             end
         end
-        
+
         if stat ~= 0
             handleWarning('MATLAB:web:BrowserNotFound', ...
                 getString(message('MATLAB:web:BrowserNotFound', ...
-                output)),options.warnOnSystemError, options.showWarningInDialog);
+                output)), options.warnOnSystemError, options.showWarningInDialog);
 
         end
     end
@@ -394,28 +394,28 @@ end
 end
 
 %--------------------------------------------------------------------------
-function stat = openWindowsBrowser(html_file,options)
-if strncmp(html_file,'mailto:',7)
+function stat = openWindowsBrowser(html_file, options)
+if strncmp(html_file, 'mailto:', 7)
     % Use the user's default mail client.
-    [stat,output] = dos(['cmd.exe /c start "" "' html_file '"']);
+    [stat, output] = dos(['cmd.exe /c start "" "', html_file, '"']);
 else
     html_file = strrep(html_file, '"', '\"');
     % If we're on the filesystem and there's an anchor at the end of
     % the URL, we need to strip it off; otherwise the file won't be
     % displayed in the browser.
     % This is a known limitation of the FileProtocolHandler.
-    [file_exists,no_anchor] = isOnFileSystem(html_file);
+    [file_exists, no_anchor] = isOnFileSystem(html_file);
     if file_exists
         html_file = no_anchor;
     end
-    [stat,output] = dos(['cmd.exe /c rundll32 url.dll,FileProtocolHandler "' html_file '"']);
+    [stat, output] = dos(['cmd.exe /c rundll32 url.dll,FileProtocolHandler "', html_file, '"']);
 end
 
 if stat ~= 0
     handleWarning('MATLAB:web:BrowserNotFound', ...
         getString(message('MATLAB:web:BrowserNotFound', ...
-        output)),options.warnOnSystemError, options.showWarningInDialog);
-    
+        output)), options.warnOnSystemError, options.showWarningInDialog);
+
 end
 end
 
@@ -436,7 +436,7 @@ end
 end
 
 %--------------------------------------------------------------------------
-function [onFileSystem,html_file] = isOnFileSystem(html_file)
+function [onFileSystem, html_file] = isOnFileSystem(html_file)
 onFileSystem = false;
 html_file = stripAnchor(html_file);
 if ~isempty(html_file)
@@ -446,7 +446,7 @@ if ~isempty(html_file)
         onFileSystem = true;
         return;
     end
-    
+
     % If using the "file:" protocol OR the path begins with a forward slash
     % OR there is no protocol being used (no colon exists in the path), assume
     % it's on the filesystem.  Relative paths already should have been
@@ -460,7 +460,7 @@ if ~isempty(html_file)
             onFileSystem = true;
         end
     end
-    
+
     % One last check, make sure the file actually exists...
     if onFileSystem
         if ~exist(html_file, 'file')
@@ -472,13 +472,13 @@ end
 
 %--------------------------------------------------------------------------
 function html_file = stripAnchor(html_file)
-    [html_file_dir,html_file_name,html_file_ext] = fileparts(html_file);
-    anchor_pos = strfind(html_file_ext, '#');
-    if ~isempty(anchor_pos)
-        full_file_name = [html_file_name html_file_ext(1:anchor_pos-1)];
-        html_file = fullfile(html_file_dir,full_file_name);
-        if strncmp(html_file, 'file:', 5)
-            html_file = strrep(html_file,'\','/');
-        end
+[html_file_dir, html_file_name, html_file_ext] = fileparts(html_file);
+anchor_pos = strfind(html_file_ext, '#');
+if ~isempty(anchor_pos)
+    full_file_name = [html_file_name, html_file_ext(1:anchor_pos-1)];
+    html_file = fullfile(html_file_dir, full_file_name);
+    if strncmp(html_file, 'file:', 5)
+        html_file = strrep(html_file, '\', '/');
     end
+end
 end

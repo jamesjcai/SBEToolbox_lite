@@ -1,7 +1,7 @@
-function ipa = assign(ipa,y,varargin)
+function ipa = assign(ipa, y, varargin)
 % INPLACE/ASSIGN Assign an entire inplace array.
 %
-% assign(ipa,y) overwrites the contents of ipa with y.  
+% assign(ipa,y) overwrites the contents of ipa with y.
 %
 % Example:
 %    ipa = inplace(ones(5,1));

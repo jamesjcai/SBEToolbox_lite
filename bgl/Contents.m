@@ -40,7 +40,7 @@
 %
 % Matchings
 % matching                  - Compute a maximum cardinality matching
-% edmonds_maximum_cardinality_matching - Edmonds' algorithm for matching 
+% edmonds_maximum_cardinality_matching - Edmonds' algorithm for matching
 % maximal_matching          - Compute maximal (not maximum) matchings
 % test_matching             - Test if a matching is maximum cardinality
 %
@@ -54,13 +54,13 @@
 % topological_order         - Compute a topological order for a dag
 % test_dag                  - Test if a graph is directed and acyclic
 %
-% Graphs 
+% Graphs
 % clique_graph              - Generates a clique or bipartite clique
 % cycle_graph               - Generates a cycle graph
 % erdos_reyni               - Generates an erdos_reyni, or Gnp, graph
 % grid_graph                - Generate a grid or hypergrid graph
 % star_graph                - Generates a star graph
-% wheel_graph               - Generates a wheel graph 
+% wheel_graph               - Generates a wheel graph
 %
 % Visitors
 % combine_visitors          - Produce a new combination visitor
@@ -71,14 +71,14 @@
 % indexed_sparse            - Generate a sparse matrix with edge indices
 % path_from_pred            - Convert a predecessor array to a path
 % tree_from_pred            - Convert predecessor array to a tree
-% 
+%
 % Examples and Demos
 % EXAMPLES/RED_BLACK        - Compute a red-black ordering of a matrix
 % examples/record_alg       - Use visitors to show how an algorithm works
 % examples/reweighted_graphs    - Show how reweighted graphs work
 % examples/core_numbers_example - Demonstrate core numbers
 % examples/planar_graph     - A few planar graph examples
-% examples/new_in_3_0       - New features in version 3.0 
+% examples/new_in_3_0       - New features in version 3.0
 % examples/new_in_4_0       - New features in version 4.0
 % examples/layouts          - Simple demonstrations of layout algorithms
 %

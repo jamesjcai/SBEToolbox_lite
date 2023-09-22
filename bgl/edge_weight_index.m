@@ -1,10 +1,10 @@
-function [ei Ei] = edge_weight_index(A,varargin)
+function [ei, Ei] = edge_weight_index(A, varargin)
 % EDGE_WEIGHT_INDEX Build a conformal matrix of edge index values for a graph.
 %
-% [eil Ei] = edge_weight_index(As) returns a vector where 
+% [eil Ei] = edge_weight_index(As) returns a vector where
 %   As(i,j) not= 0 implies Ei(i,j) not= 0 and Ei(i,j) = eil(i)
 % for an integer value of eil(i) that corresponds to the edge index value
-% passed in the visitors.  
+% passed in the visitors.
 %
 % The input matrix A should be a structural matrix with a non-zero value
 % for each edge.  The matrix Ei gives an index for each edge in the graph,
@@ -13,7 +13,7 @@ function [ei Ei] = edge_weight_index(A,varargin)
 %
 % The edge_weight_index function assists writing codes that use the
 % edge_weight parameter to reweight a graph based on a vector of weights
-% for the graph or using the ei parameter from an edge visitor.  It is 
+% for the graph or using the ei parameter from an edge visitor.  It is
 % critical to obtain high performance when
 %
 % i) constructing algorithms that use 0 weighted edges
@@ -24,7 +24,7 @@ function [ei Ei] = edge_weight_index(A,varargin)
 %
 % ... = edge_weight_index(A,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
+% for the standard options.
 %    options.undirected: output edge indices for an undirected graph [{0} | 1]
 %        see Note 1.
 %
@@ -51,29 +51,30 @@ function [ei Ei] = edge_weight_index(A,varargin)
 %  2007-07-13: Changed input options to use undirected as the option name.
 %  2007-07-24: Fixed example
 %  2008-10-07: Changed options parsing
+
 %%
 
-[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
+[trans, check, full2sparse] = get_matlab_bgl_options(varargin{:});
 if full2sparse && ~issparse(A), A = sparse(A); end
 
 options = struct('undirected', 0);
 options = merge_options(options, varargin{:});
-if check, check_matlab_bgl(A,struct('sym',options.undirected == 0)); end
+if check, check_matlab_bgl(A, struct('sym', options.undirected == 0)); end
 
 if options.undirected
     % compute the numer of edges
-    [i,j] = find(triu(A,0));
+    [i, j] = find(triu(A, 0));
     ne = length(i);
-    
-    diag_mask = i~=j;
+
+    diag_mask = i ~= j;
     eis = 1:ne;
-    
-    Ei = sparse([i;j(diag_mask)],[j;i(diag_mask)],[eis eis(diag_mask)], size(A,1), size(A,2));
+
+    Ei = sparse([i; j(diag_mask)], [j; i(diag_mask)], [eis, eis(diag_mask)], size(A, 1), size(A, 2));
 else
-    [i,j] = find(A);
+    [i, j] = find(A);
     ne = length(i);
-    
-    Ei = sparse(i,j,1:ne,size(A,1), size(A,2));
+
+    Ei = sparse(i, j, 1:ne, size(A, 1), size(A, 2));
 end
 
 if trans
@@ -81,4 +82,3 @@ if trans
 else
     ei = nonzeros(Ei);
 end
-

@@ -23,28 +23,28 @@
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-function Q=sbe_modularity_metric(adj,modules)
+function Q = sbe_modularity_metric(adj, modules)
 
-nedges=numEdges(adj); % total number of edges
+nedges = numEdges(adj); % total number of edges
 
 Q = 0;
-for k=1:length(modules)
+for k = 1:length(modules)
 
-  e_mm=numEdges(adj(modules{k},modules{k}))/nedges;
-  a_m=sum(sum(adj(:,modules{k})))/nedges - e_mm;
-  Q = Q + (e_mm - a_m^2);
-  
+    e_mm = numEdges(adj(modules{k}, modules{k})) / nedges;
+    a_m = sum(sum(adj(:, modules{k}))) / nedges - e_mm;
+    Q = Q + (e_mm - a_m^2);
+
 end
 
 
-%  % alternative: Q = sum_ij { 1/2m [Aij-kikj/2m]delta(ci,cj) } = 
-%  % = sum_ij Aij/2m delta(ci,cj) - sum_ij kikj/4m^2 delta(ci,cj) = 
+%  % alternative: Q = sum_ij { 1/2m [Aij-kikj/2m]delta(ci,cj) } =
+%  % = sum_ij Aij/2m delta(ci,cj) - sum_ij kikj/4m^2 delta(ci,cj) =
 %  % = sum_modules e_cc - sum_modules (kikj/4m^2) =
 %  % = sum_modules (e_cc - ((sum_i ki)/2m)^2)
-%  
+%
 %  n = numNodes(adj);
 %  m = numEdges(adj);
-%  
+%
 %  % define the inverse of modules: node "i" <- module "c" if "i" in module "c"
 %  mod={};
 %  for mm=1:length(modules)
@@ -52,15 +52,15 @@ end
 %      mod{modules{mm}(ii)}=modules{mm};
 %    end
 %  end
-%  
+%
 %  Q = 0;
-%  
+%
 %  for i=1:n
 %    for j=1:n
-%      
+%
 %     if not(isequal(mod(i),mod(j))); continue; end
-%  
+%
 %     Q = Q + (adj(i,j) - sum(adj(i,:))*sum(adj(j,:))/(2*m))/(2*m);
-%     
+%
 %    end
 %  end

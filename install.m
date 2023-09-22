@@ -8,9 +8,9 @@ addpath(fileparts(which(mfilename)));
 
 fprintf('done.\n')
 disp('Type "savepath" if you wish to store changes.')
-% savepath;
+    % savepath;
 
-% Systems Biology & Evolution Toolbox
-% Author: James Cai
-% Email: jcai@tamu.edu
-% Website: https://github.com/jamesjcai/SBEToolbox_lite
+    % Systems Biology & Evolution Toolbox
+    % Author: James Cai
+    % Email: jcai@tamu.edu
+    % Website: https://github.com/jamesjcai/SBEToolbox_lite

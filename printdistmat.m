@@ -1,4 +1,4 @@
-function printdistmat(D,sbeNode,dec)
+function printdistmat(D, sbeNode, dec)
 %PRINTMATRIX - Prints to the screen a printout of the matrix
 %
 % printmatrix(D,aln,dec)
@@ -21,99 +21,100 @@ function printdistmat(D,sbeNode,dec)
 % end
 % fprintf('\n');
 
-if(nargin<3),dec=3;end
-if(nargin<2),sbeNode=strread(num2str(1:size(D,1)),'%s'); end
+if (nargin < 3), dec = 3; end
+if (nargin < 2), sbeNode = strread(num2str(1:size(D, 1)), '%s'); end
 
-if(any(~isreal(D(:)))), error('Input Must be Real'); end
+if (any(~isreal(D(:)))), error('Input Must be Real'); end
 
-if(any(isnan(D(:))))
-	disp('Raw output shown because NaN in result.');
-	disp(' ');
-	disp(D);
-	return;
+if (any(isnan(D(:))))
+    disp('Raw output shown because NaN in result.');
+    disp(' ');
+    disp(D);
+    return;
 end
 
-[N,M]=size(D);
+[N, M] = size(D);
 
-D2=D; D2(D2==inf)=[];
-ff=ceil(log10(max(max(abs(D2)))))+dec+3;
+D2 = D;
+D2(D2 == inf) = [];
+ff = ceil(log10(max(max(abs(D2))))) + dec + 3;
 fprintf('\n');
 
-symmetry='nodiag';
+symmetry = 'nodiag';
 
-	if ~(N==M)
-		symmetry='yes';
-	end
-	
+if ~(N == M)
+    symmetry = 'yes';
+end
+
 %symmetry='yes';
 switch (symmetry)
     case ('yes')
-	for i=1:N,
-	    %name=char(sbeNode(i));
-        name=sbeNode{i};
-	    [x,len]=size(name);
-		   if (len>10) 
-			len=10;
-			name = char(name(1:len));
-		   elseif (len<10)
-			name(len+1:10)=' ';	
-		   end
-	    fprintf(['%s '],name);
+        for i = 1:N,
+            %name=char(sbeNode(i));
+            name = sbeNode{i};
+            [x, len] = size(name);
+            if (len > 10)
+                len = 10;
+                name = char(name(1:len));
+            elseif (len < 10)
+                name(len+1:10) = ' ';
+            end
+            fprintf(['%s '], name);
 
 
-	    if (dec==0)
-		fprintf(['%#',num2str(ff),'d '],D(i,:));
-	    else
-		fprintf(['%#',num2str(ff),'.',num2str(dec),'f '],D(i,:));
-	    end	   
-	    fprintf('\n');
-	end
-     case ('no')
-	for i=1:N,
-	    name=sbeNode{i};
-	    [x,len]=size(name);
-		   if (len>10)
-			len=10;
-			name = char(name(1:len));
-		   elseif (len<10)
-			name(len+1:10)=' ';
-		   end
-	    fprintf(['%s '],name);
-	    if (i<=M)
-		for j=1:i,
-		    if (dec==0)
-			fprintf(['%#',num2str(ff),'d '],D(i,j));
-		    else
-			fprintf(['%#',num2str(ff),'.',num2str(dec),'f '],D(i,j));
-		    end
-		end
-	    end
-        fprintf('\n');
-	end
+            if (dec == 0)
+                fprintf(['%#', num2str(ff), 'd '], D(i, :));
+            else
+                fprintf(['%#', num2str(ff), '.', num2str(dec), 'f '], D(i, :));
+            end
+            fprintf('\n');
+        end
+    case ('no')
+        for i = 1:N,
+            name = sbeNode{i};
+            [x, len] = size(name);
+            if (len > 10)
+                len = 10;
+                name = char(name(1:len));
+            elseif (len < 10)
+                name(len+1:10) = ' ';
+            end
+            fprintf(['%s '], name);
+            if (i <= M)
+                for j = 1:i,
+                    if (dec == 0)
+                        fprintf(['%#', num2str(ff), 'd '], D(i, j));
+                    else
+                        fprintf(['%#', num2str(ff), '.', num2str(dec), 'f '], D(i, j));
+                    end
+                end
+            end
+            fprintf('\n');
+        end
 
     case ('nodiag')
-	for i=1:N,
-	    name=sbeNode{i};
-	    [x,len]=size(name);
-		   if (len>10)
-			len=10;
-			name = char(name(1:len));
-		   elseif (len<10)
-			name(len+1:10)=' ';
-		   end
-	    fprintf(['%s '],name);
+        for i = 1:N,
+            name = sbeNode{i};
+            [x, len] = size(name);
+            if (len > 10)
+                len = 10;
+                name = char(name(1:len));
+            elseif (len < 10)
+                name(len+1:10) = ' ';
+            end
+            fprintf(['%s '], name);
 
-    if (i<=M)
-	for j=1:i,
-	if ~(i==j)
-	    if (dec==0)
-		fprintf(['%#',num2str(ff),'d '],D(i,j));
-	    else
-		fprintf(['%#',num2str(ff),'.',num2str(dec),'f '],D(i,j));
-	    end
-	end	
-	end
-      end
-	    fprintf('\n');
-    end
+            if (i <= M)
+                for j = 1:i,
+                    if ~(i == j)
+                        if (dec == 0)
+                            fprintf(['%#', num2str(ff), 'd '], D(i, j));
+                        else
+                            fprintf(['%#', num2str(ff), '.', num2str(dec), 'f '], D(i, j));
+                        end
+                    end
+                end
+            end
+            fprintf('\n');
+        end
 end

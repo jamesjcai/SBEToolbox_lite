@@ -1,7 +1,7 @@
-function url = sigmajsrun(sbeG,sbeNode,xy)
+function url = sigmajsrun(sbeG, sbeNode, xy)
 %SIGMAJSRUN - view network using sigma.js
 % Syntax: sigmajsrun(sbeG,sbeNode)
-% 
+%
 % Protovis is a visualization toolkit for JavaScript using SVG.
 %
 % Systems Biology and Evolution Toolbox (SBEToolbox).
@@ -15,27 +15,23 @@ function url = sigmajsrun(sbeG,sbeNode,xy)
 input_file = 'addins/sigmajs/input.xml';
 
 if ~issymnet(sbeG)
-    [sbeG]=sbe_symmetrize_adjacency(sbeG);
+    [sbeG] = sbe_symmetrize_adjacency(sbeG);
 end
 
-writesbe2xml(sbeG,sbeNode,input_file,xy)
+writesbe2xml(sbeG, sbeNode, input_file, xy)
 
 %d = dir(sigmajs_html_loc);
 str = {'curve_edges', 'fisheye', 'force_atlas2', 'hide_non_neighbor', ...
     'highlight_neighbor'};
 
 
-[s,v] = listdlg('PromptString','Select a template file:',...
-                'SelectionMode','single',...
-                'ListString',str);
-if v==1
+[s, v] = listdlg('PromptString', 'Select a template file:', ...
+    'SelectionMode', 'single', ...
+    'ListString', str);
+if v == 1
     url = strcat('addins/sigmajs/', strcat(str{s}, '.html'));
     web(url);
 else
     url = '';
     return;
 end
-
-
-
-

@@ -1,5 +1,5 @@
 function k = sbe_diffusion_kernel(g, beta)
-% Return diffusion kernel 
+% Return diffusion kernel
 %
 %   K = DKERNEL(G, BETA) return diffusion kernel of given diffusion
 %   probability BETA. Diffusion kernel of a graph is defined as

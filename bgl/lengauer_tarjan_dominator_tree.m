@@ -1,4 +1,4 @@
-function pred=lengauer_tarjan_dominator_tree(A,u,varargin)
+function pred = lengauer_tarjan_dominator_tree(A, u, varargin)
 % LENGAUER_TARJAN_DOMINATOR_TREE Compute a dominator tree for a graph.
 %
 % A dominator tree encodes dominates relations.  A vertex u dominates a
@@ -9,14 +9,14 @@ function pred=lengauer_tarjan_dominator_tree(A,u,varargin)
 % from that vertex.  (Historically, these were called flowgraphs.)
 %
 % p = lengauer_tarjan_dominator_tree(A,u) returns the predecessor array for
-% the dominator tree rooted at u.  
+% the dominator tree rooted at u.
 %
 % The runtime is O((V+E) log (V+E)) and the algorithm works on unweighted,
 % directed graphs.
 %
 % ... = lengauer_tarjan_dominator_tree(A,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
+% for the standard options.
 %   There are no additional options for this function.
 %
 % Note: this function does not depend upon the non-zero values of A, but
@@ -31,11 +31,12 @@ function pred=lengauer_tarjan_dominator_tree(A,u,varargin)
 
 %% History
 %  2007-07-13: Initial version
+
 %%
 
-[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
+[trans, check, full2sparse] = get_matlab_bgl_options(varargin{:});
 if full2sparse && ~issparse(A), A = sparse(A); end
-if check, check_matlab_bgl(A,struct()); end
+if check, check_matlab_bgl(A, struct()); end
 if trans, A = A'; end
 
-pred = dominator_tree_mex(A,u);
+pred = dominator_tree_mex(A, u);

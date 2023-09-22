@@ -7,5 +7,4 @@ function ipi = ipint32(a)
 %    ipd = ipint32(ones(5));
 
 ip = inplace(a);
-ipi = class(struct([]),'ipint32',ip);
-
+ipi = class(struct([]), 'ipint32', ip);

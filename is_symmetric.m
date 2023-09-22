@@ -1,4 +1,4 @@
-function [y]=is_symmetric(G)
+function [y] = is_symmetric(G)
 %
 % [y]=is_symmetric(G)
 
@@ -8,6 +8,6 @@ function [y]=is_symmetric(G)
 % Website: http://bioinformatics.org/sbetoolbox/
 % Last revision: 7/12/2010
 
-y=isequal(G,G.');
+y = isequal(G, G.');
 %y = max(max(G-G'))<=e
 %y=norm(G'-G) <= sqrt(eps);

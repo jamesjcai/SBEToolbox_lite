@@ -1,4 +1,4 @@
-function [is_planar ksubgraph EI]=boyer_myrvold_planarity_test(A,varargin)
+function [is_planar, ksubgraph, EI] = boyer_myrvold_planarity_test(A, varargin)
 % BOYER_MYRVOLD_PLANARITY_TEST Test a graph for planarity
 %
 % is_planar = boyer_myrvold_planaity_test(A) yields 1 if A is a planar
@@ -15,7 +15,7 @@ function [is_planar ksubgraph EI]=boyer_myrvold_planarity_test(A,varargin)
 %
 % ... = boyer_myrvold_planaity_test(A,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
+% for the standard options.
 %   No additional options for this function
 %
 % Example:
@@ -29,27 +29,28 @@ function [is_planar ksubgraph EI]=boyer_myrvold_planarity_test(A,varargin)
 
 %% History
 %  2007-10-06: Initial coding
+
 %%
 
-[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
+[trans, check, full2sparse] = get_matlab_bgl_options(varargin{:});
 if full2sparse && ~issparse(A), A = sparse(A); end
 
 options = struct();
-options = merge_options(options,varargin{:});
+options = merge_options(options, varargin{:});
 
 if nargout <= 1
-    is_planar = planar_test_mex(A,0);
-else 
+    is_planar = planar_test_mex(A, 0);
+else
     if nargout <= 2
-        [is_planar ki kj] = planar_test_mex(A,0);
+        [is_planar, ki, kj] = planar_test_mex(A, 0);
     else
-        [is_planar ki kj eip eie] = planar_test_mex(A,0);
-        EI = struct('vp',eip,'edge_order',eie);
+        [is_planar, ki, kj, eip, eie] = planar_test_mex(A, 0);
+        EI = struct('vp', eip, 'edge_order', eie);
     end
     if ~isempty(ki)
-        ksubgraph = sparse(ki,kj,1,size(A,1),size(A,2));
+        ksubgraph = sparse(ki, kj, 1, size(A, 1), size(A, 2));
     else
         ksubgraph = sparse([]);
     end
-    ksubgraph = ksubgraph|ksubgraph'; % placed here to get the type right    
+    ksubgraph = ksubgraph | ksubgraph'; % placed here to get the type right
 end

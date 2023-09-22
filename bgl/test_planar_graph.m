@@ -15,6 +15,7 @@ function is_planar = test_planar_graph(G)
 
 %% History
 %  2007-09-29: Initial coding
+
 %%
 
 is_planar = boyer_myrvold_planarity_test(G);

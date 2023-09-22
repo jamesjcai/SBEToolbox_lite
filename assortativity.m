@@ -27,12 +27,12 @@ end
 m = size(g.edges, 1);
 e = zeros(ng, ng);
 for k = 1:m
-    startNodeGroup = find(ugp==g.nodes(g.edges(k,1)).groupid);
-    endNodeGroup = find(ugp==g.nodes(g.edges(k,2)).groupid);
-    e(startNodeGroup, endNodeGroup) = e(startNodeGroup, endNodeGroup) + 1/m;
+    startNodeGroup = find(ugp == g.nodes(g.edges(k, 1)).groupid);
+    endNodeGroup = find(ugp == g.nodes(g.edges(k, 2)).groupid);
+    e(startNodeGroup, endNodeGroup) = e(startNodeGroup, endNodeGroup) + 1 / m;
 end
 
-a = sum(e,1);
-b = sum(e,2);
+a = sum(e, 1);
+b = sum(e, 2);
 
 r = trace(e) - a * b / (1 - a * b);

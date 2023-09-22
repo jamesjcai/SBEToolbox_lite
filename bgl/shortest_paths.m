@@ -1,16 +1,16 @@
-function [d pred] = shortest_paths(A,u,varargin)
+function [d, pred] = shortest_paths(A, u, varargin)
 % SHORTEST_PATHS Compute the weighted single source shortest path problem.
 %
 % [d pred] = shortest_paths(A,u) returns the distance (d) and the predecessor
 % (pred) for each of the vertices along the shortest path from u to every
-% other vertex in the graph.  
-% 
+% other vertex in the graph.
+%
 % ... = shortest_paths(A,u,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
-%   options.algname: the algorithm to use 
+% for the standard options.
+%   options.algname: the algorithm to use
 %       [{'auto'} | 'dijkstra' | 'bellman_ford' | 'dag']
-%   options.inf: the value to use for unreachable vertices 
+%   options.inf: the value to use for unreachable vertices
 %       [double > 0 | {Inf}]
 %   options.target: a special vertex that will stop the search when hit
 %       [{'none'} | any vertex number besides the u]; target is ignored if
@@ -29,7 +29,7 @@ function [d pred] = shortest_paths(A,u,varargin)
 % Note: 'auto' cannot be used with 'nocheck' = 1.  The 'auto' algorithm
 % checks if the graph has negative edges and uses bellman_ford in that
 % case, otherwise, it uses 'dijkstra'.  In the future, it may check if the
-% graph is a dag and use 'dag'.  
+% graph is a dag and use 'dag'.
 %
 % Example:
 %    load graphs/clr-25-2.mat
@@ -47,14 +47,15 @@ function [d pred] = shortest_paths(A,u,varargin)
 %  2007-04-19: Added target option.
 %    Added additional error checks.
 %  2007-07-12: Fixed edge_weight documentation
+
 %%
 
-[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
+[trans, check, full2sparse] = get_matlab_bgl_options(varargin{:});
 if full2sparse && ~issparse(A), A = sparse(A); end
 
 options = struct('algname', 'auto', 'inf', Inf, 'edge_weight', 'matrix', ...
     'target', 'none');
-options = merge_options(options,varargin{:});    
+options = merge_options(options, varargin{:});
 
 % edge_weights is an indicator that is 1 if we are using edge_weights
 % passed on the command line or 0 if we are using the matrix.
@@ -68,7 +69,7 @@ else
     edge_weight_opt = options.edge_weight;
 end
 
-if strcmp(options.target,'none')
+if strcmp(options.target, 'none')
     target = 0; % a flag used to denote "no target" to the mex
 elseif isa(options.target, 'double')
     target = options.target;
@@ -79,12 +80,12 @@ end
 
 if check
     % check the values of the matrix
-    check_matlab_bgl(A,struct('values',edge_weights ~= 1));
-    
+    check_matlab_bgl(A, struct('values', edge_weights ~= 1));
+
     if edge_weights && nnz(A) ~= length(edge_weight_opt)
         error('matlab_bgl:invalidParameter', 'the vector of edge weights must have length nnz(A)');
     end
-    
+
     % set the algname
     if (strcmpi(options.algname, 'auto'))
         if edge_weights
@@ -92,7 +93,7 @@ if check
         else
             mv = min(min(A));
         end
-        
+
         if (mv < 0)
             options.algname = 'bellman_ford';
         else
@@ -112,11 +113,11 @@ if check
             end
         end
     end
-    
+
 else
     if (strcmpi(options.algname, 'auto'))
         error('shortest_paths:invalidParameter', ...
-            'algname auto is not compatible with no check');       
+            'algname auto is not compatible with no check');
     end
 end
 
@@ -124,11 +125,10 @@ if options.inf < 0, error('options.inf must be larger than 0'); end
 
 if trans, A = A'; end
 
-if isfield(options,'visitor')
-    [d pred] = matlab_bgl_sp_mex(A,u,target,lower(options.algname),options.inf,...
+if isfield(options, 'visitor')
+    [d, pred] = matlab_bgl_sp_mex(A, u, target, lower(options.algname), options.inf, ...
         edge_weight_opt, options.visitor);
 else
-    [d pred] = matlab_bgl_sp_mex(A,u,target,lower(options.algname),options.inf,...
+    [d, pred] = matlab_bgl_sp_mex(A, u, target, lower(options.algname), options.inf, ...
         edge_weight_opt);
 end
-

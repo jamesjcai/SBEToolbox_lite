@@ -1,4 +1,4 @@
-function [pw1,pw0]=cdsbe
+function [pw1, pw0] = cdsbe
 %CDSBE - Changes to SBEToolbox directory
 
 % Systems Biology & Evolution Toolbox
@@ -6,8 +6,8 @@ function [pw1,pw0]=cdsbe
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-pw0=pwd;
-pw1=fileparts(which(mfilename));
+pw0 = pwd;
+pw1 = fileparts(which(mfilename));
 cd(pw1);
 
 % if ~strcmp(pw0,pw1)
@@ -24,6 +24,3 @@ cd(pw1);
 %         case {'never','No','Cancel'}
 %     end
 % end
-
-
-

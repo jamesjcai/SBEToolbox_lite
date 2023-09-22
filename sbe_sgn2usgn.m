@@ -1,4 +1,4 @@
-function A=sbe_sgn2usgn(A,b)
+function A = sbe_sgn2usgn(A, b)
 % A - a matrix of correlation coefficients
 
 % Systems Biology & Evolution Toolbox
@@ -6,11 +6,11 @@ function A=sbe_sgn2usgn(A,b)
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-if nargin<2
-    b=2;
+if nargin < 2
+    b = 2;
 end
-A=0.5*(A+1);
-A=exp(log(A)*b);
+A = 0.5 * (A + 1);
+A = exp(log(A)*b);
 return
 
 
@@ -31,8 +31,8 @@ figure;
 hold on
 s=0:0.01:1;
 for beta=1:6
-a=exp(log(s)*beta);
-plot(s,a,'-')
+    a=exp(log(s)*beta);
+    plot(s,a,'-')
 end
 
 A

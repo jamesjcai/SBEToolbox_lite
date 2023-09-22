@@ -1,19 +1,19 @@
-function ccfs = clustering_coefficients(A,varargin)
+function ccfs = clustering_coefficients(A, varargin)
 % CLUSTERING_COEFFICIENTS Compute the clustering coefficients for vertices.
 %
 % ccfs = clustering_coefficients(A) returns the clustering coefficients for
 % all vertices in A.  The clustering coefficient is the ratio of the number
-% of edges between a vertex's neighbors to the total possible number of 
-% edges between the vertex's neighbors. 
+% of edges between a vertex's neighbors to the total possible number of
+% edges between the vertex's neighbors.
 %
 % This method works on directed or undirected graphs.
 % The runtime is O(nd^2) where d is the maximum vertex degree.
 %
 % ... = clustering_coefficients(A,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
+% for the standard options.
 %   options.undirected: enable optimizations for undirected graphs [{0} | 1]
-%   options.unweighted: an optional switch to perform the weighted 
+%   options.unweighted: an optional switch to perform the weighted
 %       computation [{0} | 1], see Note
 %   options.edge_weight: a double array over the edges with an edge
 %       weight for each node, see EDGE_INDEX and EXAMPLES/REWEIGHTED_GRAPHS
@@ -25,7 +25,7 @@ function ccfs = clustering_coefficients(A,varargin)
 % support weighted components.  To maintain backwards compatibility, the
 % function will automatically set options.unweighted if the input matrix
 % is not a double type.  That is, unless 'unweighted' is explictly set to
-% 0, in which case we throw an error 
+% 0, in which case we throw an error
 %
 % Example:
 %    load('graphs/clique-10.mat');
@@ -40,6 +40,7 @@ function ccfs = clustering_coefficients(A,varargin)
 %  2007-07-11: Added directed and weighted options
 %  2007-07-12: Added non-negative edge check
 %  2008-10-07: Changed options parsing
+
 %%
 
 %[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
@@ -63,15 +64,15 @@ end
 
 if check
     % possibly check the symmetry
-    check_matlab_bgl(A,struct('sym',options.undirected));
-    
-    if options.unweighted ~= 1 && edge_weights~=1
+    check_matlab_bgl(A, struct('sym', options.undirected));
+
+    if options.unweighted ~= 1 && edge_weights ~= 1
         try
-            check_matlab_bgl(A,struct('nodefault',1,'values',1,'noneg',1));
+            check_matlab_bgl(A, struct('nodefault', 1, 'values', 1, 'noneg', 1));
         catch
             % we got a value error, check if they specified unweighted
             if ~isempty(varargin) && ...
-                isfield(varargin{1},'unweighted') && varargin{1}.('unweighted')~=1
+                    isfield(varargin{1}, 'unweighted') && varargin{1}.('unweighted') ~= 1
                 rethrow(lasterror);
             else
                 % use the backward compatibility option
@@ -80,7 +81,7 @@ if check
         end
     elseif options.unweighted ~= 1 && edge_weights && any(edge_weight_opt < 0)
         error('matlab_bgl:invalidParameter', ...
-                'the edge_weight array must be non-negative');
+            'the edge_weight array must be non-negative');
     end
 end
 
@@ -95,6 +96,4 @@ else
     weight_arg = 0;
 end
 
-ccfs=clustering_coefficients_mex(A,options.undirected,weight_arg);
-
-
+ccfs = clustering_coefficients_mex(A, options.undirected, weight_arg);

@@ -1,4 +1,4 @@
-function q=modularity_n04(G,s)
+function q = modularity_n04(G, s)
 q = modularity_ws05(G, s);
 
 %http://prola.aps.org/pdf/PRE/v69/i6/e066133

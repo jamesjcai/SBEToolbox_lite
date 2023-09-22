@@ -1,4 +1,4 @@
-function [sbeG,sbeNode]=randnet_ph(v_deg)
+function [sbeG, sbeNode] = randnet_ph(v_deg)
 % RANDNET_PH Generates a random graph using stickiness model Przulj & Higham (Gnp) graph
 %
 % V_DEG = list of degrees of N nodes
@@ -14,17 +14,17 @@ function [sbeG,sbeNode]=randnet_ph(v_deg)
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 % Last revision: 7/12/2010
 
-dgi=v_deg./sum(v_deg);
-n=length(v_deg);
-sbeG=false(n);
-for i=1:n-1
-for j=i+1:n
-    if (rand<=dgi(i)*dgi(j))
-	sbeG(i,j)=true;
+dgi = v_deg ./ sum(v_deg);
+n = length(v_deg);
+sbeG = false(n);
+for i = 1:n - 1
+    for j = i + 1:n
+        if (rand <= dgi(i) * dgi(j))
+            sbeG(i, j) = true;
+        end
     end
 end
-end
-sbeG=sbeG|sbeG';
-if (nargout>2)
-	sbeNode=strread(num2str(1:size(sbeG,1)),'%s');
+sbeG = sbeG | sbeG';
+if (nargout > 2)
+    sbeNode = strread(num2str(1:size(sbeG, 1)), '%s');
 end

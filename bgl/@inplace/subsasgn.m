@@ -1,4 +1,4 @@
-function ip=subsasgn(ip,S,B)
+function ip = subsasgn(ip, S, B)
 % INPLACE/SUBSASGN Support Matlab subscript assignment
 %
 % This function supports subscript assignment just like Matlab matrices.
@@ -8,4 +8,4 @@ function ip=subsasgn(ip,S,B)
 %    ipa([2 4]) = 1;
 %    ipa
 
-ip.subsasgn(S,B);
+ip.subsasgn(S, B);

@@ -1,4 +1,4 @@
-function [varargout]=push_relabel_max_flow(A,u,v,varargin)
+function [varargout] = push_relabel_max_flow(A, u, v, varargin)
 % PUSH_RELABEL_MAX_FLOW Goldberg's push-relabel max flow algorithm
 %
 % This function calls Boost's implementation of Goldberg's push relabel
@@ -17,14 +17,15 @@ function [varargout]=push_relabel_max_flow(A,u,v,varargin)
 %% History
 %  2007-07-07: Initial version
 %  2008-10-07: Changed options parsing
+
 %%
 
 algname = 'push_relabel';
-if ~isempty(varargin), 
-    options = merge_options(struct(),varargin{:}); 
-    options.algname= algname;
-else options = struct('algname',algname); 
+if ~isempty(varargin),
+    options = merge_options(struct(), varargin{:});
+    options.algname = algname;
+else options = struct('algname', algname);
 end
 
-varargout = cell(1,max(nargout,1));
-[varargout{:}] = max_flow(A,u,v,options);
+varargout = cell(1, max(nargout, 1));
+[varargout{:}] = max_flow(A, u, v, options);

@@ -1,15 +1,15 @@
-function [path P] = path_from_pred(pred,d,varargin)
+function [path, P] = path_from_pred(pred, d, varargin)
 % PATH_FROM_PRED Convert a predecessor array into a path to a vertex.
 %
-% path = path_from_pred(pred,d) returns the list of vertices on the path 
-% from a source vertex to a vertex d.  The predecessor array is a row 
-% vector such that 
-%   pred(i) = 0 if vertex i is a source vertex u, 
+% path = path_from_pred(pred,d) returns the list of vertices on the path
+% from a source vertex to a vertex d.  The predecessor array is a row
+% vector such that
+%   pred(i) = 0 if vertex i is a source vertex u,
 %   pred(i) = 0 if vertex i has no predecessor associated with it, or
 %   pred(i) = j where j preceeds vertex i on the shortest path from u to i.
-% The vertex d is a number from 1 to n, where n is the length of the 
+% The vertex d is a number from 1 to n, where n is the length of the
 % predecessor array.
-% 
+%
 % The returned path is a 1 by k+1 array where the path from the source to d
 % has k edges path lists the order of visting the vertices.  In the case
 % that the vertex is the source or unreachable from the source, the path
@@ -33,15 +33,14 @@ function [path P] = path_from_pred(pred,d,varargin)
 
 %% History
 %  2007-04-17: Initial coding
+
 %%
 
 % TODO handle the case of a matrix of predecessors from all_shortest_paths
 
-path = path_from_pred_mex(pred,d);
+path = path_from_pred_mex(pred, d);
 
 if nargout == 2
     n = length(pred);
     P = sparse(path(1:end-1), path(2:end), 1, n, n);
 end
-
-

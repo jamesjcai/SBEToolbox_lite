@@ -1,5 +1,3 @@
-
-
 %
 % check dijkstra for only positive values
 %
@@ -8,8 +6,8 @@
 % add graph struct type...
 %
 % ctrl-c mex files
-% 
-% 
+%
+%
 %
 
 % graph constructions
@@ -42,4 +40,3 @@
 % - symmetrize graph (aka. make_undirected)
 
 fprintf('Wanna help?  Send me email!');
-

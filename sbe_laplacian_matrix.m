@@ -1,4 +1,4 @@
-function [L,Lnorm] = sbe_laplacian_matrix(A)
+function [L, Lnorm] = sbe_laplacian_matrix(A)
 % Get graph Laplacian matrix
 %
 %   L = laplacian(g)
@@ -23,33 +23,31 @@ function [L,Lnorm] = sbe_laplacian_matrix(A)
 
 %{
 A=[  0     1     0     1     0     0     0     0     0
-     1     0    -1     1    -1     0     0     1     0
-     0    -1     0     0     1     1     0     0     0
-     1     1     0     0    -1     0     1     1     0
-     0    -1     1    -1     0     1     0    -1     1
-     0     0     1     0     1     0     0    -1     1
-     0     0     0     1     0     0     0     1     0
-     0     1     0     1    -1    -1     1     0    -1
-     0     0     0     0     1     1     0    -1     0];
+1     0    -1     1    -1     0     0     1     0
+0    -1     0     0     1     1     0     0     0
+1     1     0     0    -1     0     1     1     0
+0    -1     1    -1     0     1     0    -1     1
+0     0     1     0     1     0     0    -1     1
+0     0     0     1     0     0     0     1     0
+0     1     0     1    -1    -1     1     0    -1
+0     0     0     0     1     1     0    -1     0];
 
 %}
 
-D=sum(abs(A));    %
-L=diag(D)-A;
-if nargout>1    
-    n=size(A,1);
-    D(D~=0)=sqrt(1./D(D~=0));
+D = sum(abs(A)); %
+L = diag(D) - A;
+if nargout > 1
+    n = size(A, 1);
+    D(D ~= 0) = sqrt(1./D(D ~= 0));
     % D=diag(D);
     % % Lnorm=D*L*D;
     % Lnorm=eye(size(A,1))-D*A*D;     % L = I-D^-1/2*W*D^-1/2
-    D = spdiags(D',0,n,n);
-    Lnorm = speye(n) - D*A*D;
+    D = spdiags(D', 0, n, n);
+    Lnorm = speye(n) - D * A * D;
 end
-
 
 
 % D = sqrt(sum(abs(W)))';
 % D(D==0) = 1;
 % D = spdiags(1./D,0,N,N);
 % L = speye(N) - D*W*D;
-

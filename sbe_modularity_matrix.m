@@ -1,4 +1,4 @@
-function B=sbe_modularity_matrix(A,gammav)
+function B = sbe_modularity_matrix(A, gammav)
 % MODMAT - Modularity matrix for undirected graph
 %
 %   B = modmat(G) find modularity matrix of the undirected graph. Each
@@ -46,10 +46,9 @@ function B=sbe_modularity_matrix(A,gammav)
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 
-if nargin<2
-    gammav=1;
+if nargin < 2
+    gammav = 1;
 end
-deg = sum(A,1);
+deg = sum(A, 1);
 m = sum(deg);
-B=A-(gammav*(deg'*deg))/m;
-
+B = A - (gammav * (deg' * deg)) / m;

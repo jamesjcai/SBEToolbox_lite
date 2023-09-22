@@ -1,5 +1,5 @@
 %% New features in MatlabBGL version 4.0
-% MatlabBGL 3.0 was only released as a beta test.  Version 4.0 is a 
+% MatlabBGL 3.0 was only released as a beta test.  Version 4.0 is a
 % full release with quite a few new features.
 
 %% Improved reweighted graphs
@@ -8,17 +8,18 @@
 % if there is an edge between vertex i and j and A(i,j)=wij where wij is
 % the weight of the edge between i and j.
 
-As = cycle_graph(6,'directed',0); % compute a 6 node cycle graph
+As = cycle_graph(6, 'directed', 0); % compute a 6 node cycle graph
 A = As; % set all the weights to be one initially
-A(2,3) = 0; A(3,2) = 0; % make one edge have zero weight
+A(2, 3) = 0;
+A(3, 2) = 0; % make one edge have zero weight
 fprintf('Edges\n');
 full(As)
 fprintf('Weights\n');
 full(A)
 
-%% 
+%%
 % Note that As is given as the graph in the following call, not A!
-[d pred] = shortest_paths(As,1,'edge_weight',edge_weight_vector(As,A));
+[d, pred] = shortest_paths(As, 1, 'edge_weight', edge_weight_vector(As, A));
 d(3) % distance from vertex 1 to vertex 3 should be just 1!
 
 %% Graph layout algorithms
@@ -27,19 +28,19 @@ d(3) % distance from vertex 1 to vertex 3 should be just 1!
 % MatlabBGL 4.0!
 
 %%
-G = grid_graph(6,5);
+G = grid_graph(6, 5);
 X = kamada_kawai_spring_layout(G);
-gplot(G,X,'.-');
+gplot(G, X, '.-');
 
 %%
-G = grid_graph(6,5);
+G = grid_graph(6, 5);
 X = fruchterman_reingold_force_directed_layout(G);
-gplot(G,X,'.-');
+gplot(G, X, '.-');
 
 %%
-G = grid_graph(6,5);
+G = grid_graph(6, 5);
 X = gursoy_atun_layout(G);
-gplot(G,X,'.-');
+gplot(G, X, '.-');
 
 %% Planar graph algorithms
 % The Boost Graph Library received a new suite of planar graph algorithms.
@@ -47,7 +48,7 @@ gplot(G,X,'.-');
 
 %%
 % A grid in the xy plane is a planar graph.
-G = grid_graph(6,5);
+G = grid_graph(6, 5);
 is_planar = boyer_myrvold_planarity_test(G)
 
 %%
@@ -58,9 +59,9 @@ is_planar = test_planar_graph(K5) % helpful wrapper
 
 %%
 % We can also draw planar graphs
-G = grid_graph(6,5);
+G = grid_graph(6, 5);
 X = chrobak_payne_straight_line_drawing(G);
-gplot(G,X,'.-'); % it looks a little different!
+gplot(G, X, '.-'); % it looks a little different!
 
 %% New option syntax
 % You probably noticed that the "struct" command that permeated MatlabBGL
@@ -69,19 +70,18 @@ gplot(G,X,'.-'); % it looks a little different!
 % arguments and a list of key-value pairs
 
 %%
-% We'll look at spanning trees on the clique graph with 5 vertices.  
+% We'll look at spanning trees on the clique graph with 5 vertices.
 % Using Prim's algorithm, the spanning tree we get depends on the root.  We
 % always get a star graph rooted at the vertex we pick as the root.
 G = clique_graph(5);
 
 %%
 % Old style
-full(mst(G,struct('root',5,'algname','prim')))
+full(mst(G, struct('root', 5, 'algname', 'prim')))
 
 %%
 % New style
 
 %%
 % Just to make sure it works
-full(mst(G,'root',1,'algname','prim'))
-
+full(mst(G, 'root', 1, 'algname', 'prim'))

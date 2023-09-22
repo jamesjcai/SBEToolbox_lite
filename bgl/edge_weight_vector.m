@@ -1,4 +1,4 @@
-function v=edge_weight_vector(As,A,varargin)
+function v = edge_weight_vector(As, A, varargin)
 % EDGE_WEIGHT_VECTOR Returns input for the edge_weight option for a weighted
 % matrix
 %
@@ -22,25 +22,26 @@ function v=edge_weight_vector(As,A,varargin)
 
 %% History
 %  2008-09-24: Initial coding
+
 %%
-[trans check] = get_matlab_bgl_options(varargin{:});
+[trans, check] = get_matlab_bgl_options(varargin{:});
 if check
-    check_matlab_bgl(A,struct()); 
-    if any(size(As)~=size(A)), error('matlab_bgl:edge_weight_vector', ...
+    check_matlab_bgl(A, struct());
+    if any(size(As) ~= size(A)), error('matlab_bgl:edge_weight_vector', ...
             'The structral and weight matrix must be the same size'); end
 end
-n = size(A,1);
-if trans, [j i] = find(As');
-else [i j] = find(As);
+n = size(A, 1);
+if trans, [j, i] = find(As');
+else [i, j] = find(As);
 end
-Ai = sparse(i,j,1:nnz(As),n,n);
-inds = nonzeros(Ai.*(A~=0));
+Ai = sparse(i, j, 1:nnz(As), n, n);
+inds = nonzeros(Ai.*(A ~= 0));
 if length(inds) ~= nnz(A), error('matlab_bgl:edge_weight_vector', ...
-    'The matrix A cannot have additional non-zeros not in As.'); end
-v = zeros(nnz(As),1);
+        'The matrix A cannot have additional non-zeros not in As.'); end
+v = zeros(nnz(As), 1);
 v(inds) = nonzeros(A);
-if check && ~isequal(A,sparse(j,i,v,n,n)')
-    error('matlab_bgl:edge_weight_vector','error in weight function');
+if check && ~isequal(A, sparse(j, i, v, n, n)')
+    error('matlab_bgl:edge_weight_vector', 'error in weight function');
 end
 
 %% Todo

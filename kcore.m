@@ -9,14 +9,9 @@ function kcore
 %the globally central region of the original network.
 %
 %Wuchty, S. and Almaas, E. (2005) Peeling the yeast protein network.
-%Proteomics, 5, 444–449
+%Proteomics, 5, 444â€“449
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
-
-
-
-
-

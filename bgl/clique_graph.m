@@ -1,4 +1,4 @@
-function [A] = clique_graph(n,varargin)
+function [A] = clique_graph(n, varargin)
 % CLIQUE_GRAPH Generate the clique graph or bipartite clique graph
 %
 % The clique graph is a graph with as many edges as possible.
@@ -24,13 +24,14 @@ function [A] = clique_graph(n,varargin)
 
 %% History
 %  2007-10-01: Initial coding
+
 %%
 
 options = struct('selfloops', 0);
-options = merge_options(options,varargin{:});
+options = merge_options(options, varargin{:});
 
 if isscalar(n)
-    A = ones(n,n);
+    A = ones(n, n);
     if ~options.selfloops,
         A = A - diag(diag(A));
     end
@@ -38,12 +39,12 @@ if isscalar(n)
 elseif numel(n) == 2,
     m = n(1);
     n = n(2);
-    A = ones(m,n);
-    A = spaugment(ones(m,n),0);
+    A = ones(m, n);
+    A = spaugment(ones(m, n), 0);
     if options.selfloops,
         A = A + speye(m+n);
     end
-else 
+else
     error('matlab_bgl:invalidArgument', ...
         'the size option must be a scalar or a pair of numbers');
 end

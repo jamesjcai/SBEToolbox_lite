@@ -1,40 +1,40 @@
-function [TOM]=sbe_adj2tom(adj,numSteps,varargin)
+function [TOM] = sbe_adj2tom(adj, numSteps, varargin)
 % The Topological Overlap Measure (TOM) was introduced in [1] to make networks less sensitive to spurious
 % connections or to connections missing due to random noise. While the original work [1] considered
 % unweighted networks, the authors of [2] generalized TOM to a weighted network.
 % The central idea of TOM is to count the direct connection strengths as well as connection strengths
 % \mediated" by shared neighbors. The standard, or \unsigned" TOM assumes that neighbor-mediated
 % connections can always be considered as \reinforcing" the direct connection. This may not always be the
-% case, and the signed TOM is an attempt to take this into account.    
+% case, and the signed TOM is an attempt to take this into account.
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-if nargin<2
-    numSteps=1;
+if nargin < 2
+    numSteps = 1;
 end
 
 p = inputParser;
 defaultType = 'unsigned';
-validTypes = {'unsigned','signed'};
-checkType = @(x) any(validatestring(x,validTypes));
-addRequired(p,'adj',@isnumeric);
-addOptional(p,'type',defaultType,checkType)
-parse(p,adj,varargin{:})
+validTypes = {'unsigned', 'signed'};
+checkType = @(x) any(validatestring(x, validTypes));
+addRequired(p, 'adj', @isnumeric);
+addOptional(p, 'type', defaultType, checkType)
+parse(p, adj, varargin{:})
 
 switch p.Results.type
     case 'unsigned'
-        [TOM]=sbe_gtom(adj,numSteps);
+        [TOM] = sbe_gtom(adj, numSteps);
     case 'signed'
         % adj=sbe_cor2adj(cor,'modified',true,'type','unsigned');
         % [TOM]=sbe_adj2tom(adj,1,'type','signed')
-        
-    % for calculating signed TOM
-    % see Signed vs. Unsigned Topological Overlap Matrix Technical report
-    % https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/TechnicalReports/signedTOM.pdf
-        
+
+        % for calculating signed TOM
+        % see Signed vs. Unsigned Topological Overlap Matrix Technical report
+        % https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/TechnicalReports/signedTOM.pdf
+
         error('Unfinished.');
 end
 end
@@ -48,7 +48,7 @@ end
 %     case TomTypeUnsigned:
 %       for (size_t j=0; j< ng1; j++)
 %       {
-%         tom2 = tom + (ng+1)*j + 1;  
+%         tom2 = tom + (ng+1)*j + 1;
 %         adj2 = adj + (ng+1)*j + 1;
 %         for (size_t i=j+1; i< ng; i++)
 %         {
@@ -68,7 +68,7 @@ end
 %     case TomTypeSigned:
 %       for (size_t j=0; j < ng1; j++)
 %       {
-%         tom2 = tom + (ng+1)*j + 1;  
+%         tom2 = tom + (ng+1)*j + 1;
 %         adj2 = adj + (ng+1)*j + 1;
 %         for (size_t i=j+1; i< ng; i++)
 %         {
@@ -80,7 +80,7 @@ end
 %             else
 %                den1 = (conn[i] + conn[j])/2;
 %             *(tom + ng*i + j) = *tom2 = fabs( *tom2 - *adj2) / ( den1 - fabs(*adj2) );
-%             if (*tom2 > 1) 
+%             if (*tom2 > 1)
 %             {
 %               Rprintf("TOM greater than 1: actual value: %f, i: %d, j: %d\n", *tom2, i, j);
 %               nAbove1++;
@@ -96,4 +96,4 @@ end
 %       }
 %       break;
 %   }
-%   
+%

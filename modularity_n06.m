@@ -1,8 +1,8 @@
-function q = modularity_n06(G,s)
+function q = modularity_n06(G, s)
 % modularity    - modularity of the graph for given partitioning vector
 %
 %   q = modularity (g, s) modularity of the graph g for given partitioning
-%   vector s. 
+%   vector s.
 %
 %         1
 %   q = ----- s' * B * s
@@ -18,7 +18,7 @@ function q = modularity_n06(G,s)
 %  s = (rand(1,n) > rand)*2-1; % generate random partitioning
 %  q = modularity(g, s);
 %
-% Ref: Newman M. E. Proc Natl Acad Sci U S A 2006 
+% Ref: Newman M. E. Proc Natl Acad Sci U S A 2006
 %
 % See also MODULARITY2, MODMAT.
 
@@ -32,14 +32,13 @@ function q = modularity_n06(G,s)
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
 
-if nargin<2
-    n=size(G,1);
-    s = (rand(1,n) > rand)*2-1;
+if nargin < 2
+    n = size(G, 1);
+    s = (rand(1, n) > rand) * 2 - 1;
 end
 
 deg = sum(G);
-m = sum(deg)/2;
+m = sum(deg) / 2;
 s = s(:);
 
-q = s' * modularity_matrix(G) * s / (4*m);
-
+q = s' * modularity_matrix(G) * s / (4 * m);

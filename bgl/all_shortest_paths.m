@@ -1,23 +1,23 @@
-function [D,P] = all_shortest_paths(A,varargin)
+function [D, P] = all_shortest_paths(A, varargin)
 % all_shortest_paths Compute the weighted all pairs shortest path problem.
 %
 % D = all_shortest_paths(A) returns the distance matrix D for all vertices
 % where D(i,j) indicates the shortest path distance between vertex i and
-% vertex j.  
+% vertex j.
 %
-% For the Floyd-Warshall algorithm, this function can return the 
+% For the Floyd-Warshall algorithm, this function can return the
 % predecessor matrix as well:
 %   [D P]=all_shortest_paths(A,struct('algname','floyd_warshall'));
 % returns P so that the P(i,j) is the node preceeding j on the path from
 % i to j.  To build the path between (i,j), use the commands
 %   p=[]; while j~=0, p(end+1)=j; j=P(i,j); end; p=fliplr(p);
-% 
+%
 % ... = all_shortest_paths(A,u,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
-%   options.algname: the algorithm to use 
+% for the standard options.
+%   options.algname: the algorithm to use
 %       [{'auto'} | 'johnson' | 'floyd_warshall']
-%   options.inf: the value to use for unreachable vertices 
+%   options.inf: the value to use for unreachable vertices
 %       [double > 0 | {Inf}]
 %   options.edge_weight: a double array over the edges with an edge
 %       weight for each node, see EDGE_INDEX and EXAMPLES/REWEIGHTED_GRAPHS
@@ -49,13 +49,14 @@ function [D,P] = all_shortest_paths(A,varargin)
 %  2007-07-21: Fixed divide by 0 error in check for algorithm type
 %  2008-04-02: Added documenation for predecessor matrix
 %  2008-10-07: Changed options parsing
+
 %%
 
-[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
+[trans, check, full2sparse] = get_matlab_bgl_options(varargin{:});
 if full2sparse && ~issparse(A), A = sparse(A); end
 
 options = struct('algname', 'auto', 'inf', Inf, 'edge_weight', 'matrix');
-options = merge_options(options,varargin{:});
+options = merge_options(options, varargin{:});
 
 % edge_weights is an indicator that is 1 if we are using edge_weights
 % passed on the command line or 0 if we are using the matrix.
@@ -70,12 +71,12 @@ end
 
 if check
     % check the values of the matrix
-    check_matlab_bgl(A,struct('values',1));
-    
+    check_matlab_bgl(A, struct('values', 1));
+
     % set the algname
     if strcmpi(options.algname, 'auto')
         nz = nnz(A);
-        if (nz/(numel(A)+1) > .1)
+        if (nz / (numel(A) + 1) > .1)
             options.algname = 'floyd_warshall';
         else
             options.algname = 'johnson';
@@ -84,18 +85,17 @@ if check
 else
     if strcmpi(options.algname, 'auto')
         error('all_shortest_paths:invalidParameter', ...
-            'algname auto is not compatible with no check');       
+            'algname auto is not compatible with no check');
     end
 end
 
 if trans, A = A'; end
 
 if nargout > 1
-    [D,P] = matlab_bgl_all_sp_mex(A,lower(options.algname),options.inf,edge_weight_opt);
+    [D, P] = matlab_bgl_all_sp_mex(A, lower(options.algname), options.inf, edge_weight_opt);
     P = P';
 else
-    D = matlab_bgl_all_sp_mex(A,lower(options.algname),options.inf,edge_weight_opt);
+    D = matlab_bgl_all_sp_mex(A, lower(options.algname), options.inf, edge_weight_opt);
 end
 
 if trans, D = D'; end
-

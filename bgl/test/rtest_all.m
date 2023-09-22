@@ -8,25 +8,25 @@ for di = 1:length(D)
     if f.isdir
         continue;
     end
-    
-    [pathstr,name,ext] = fileparts(f.name);
 
-	if ~strcmp(ext,'.m')
-		continue
+    [pathstr, name, ext] = fileparts(f.name);
+
+    if ~strcmp(ext, '.m')
+        continue
     end;
-    
+
     if strcmp('rtest_all.m', f.name)
         continue;
     end
-    
-    if strmatch('rtest',f.name)
-        numtests = numtests+1;
-        
-        [pathstr,name,ext] = fileparts(f.name);
+
+    if strmatch('rtest', f.name)
+        numtests = numtests + 1;
+
+        [pathstr, name, ext] = fileparts(f.name);
         rval = eval(name);
         results(numtests) = rval;
-        
-        switch(rval)
+
+        switch (rval)
             case 1
                 fprintf('%s passed\n', name);
             case 0

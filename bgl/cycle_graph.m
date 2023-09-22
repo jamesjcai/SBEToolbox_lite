@@ -1,10 +1,10 @@
-function [A xy] = cycle_graph(n,varargin)
+function [A, xy] = cycle_graph(n, varargin)
 % CYCLE_GRAPH Generate the cycle graph of order n
 %
 % The cycle graph is a simple cycle with n vertices.
 %
 % [A xy] = cycle_graph(n) generates a cycle graph with n vertices and
-% returns the adjacency matrix in A.  The matrix xy stores two-dimensional 
+% returns the adjacency matrix in A.  The matrix xy stores two-dimensional
 % coordinates for each vertex.
 %
 % [...] = cycle_graph(n,options) can generate variants on the cycle graph
@@ -23,24 +23,25 @@ function [A xy] = cycle_graph(n,varargin)
 %  2007-07-08: Added directed graph option
 %  2007-09-29: Changed output to double, fixed for n=0, changed options
 %    format
+
 %%
 
 [trans] = get_matlab_bgl_options(varargin{:});
 options = struct('directed', '1');
-options = merge_options(options,varargin{:});
+options = merge_options(options, varargin{:});
 
-if n>0
+if n > 0
     i = 1:n;
-    j = [i(2:end) i(1)];
-    A = sparse(i,j,1,n,n);
+    j = [i(2:end), i(1)];
+    A = sparse(i, j, 1, n, n);
     if ~options.directed
-        A = A|A';
+        A = A | A';
         A = double(A);
     end
-    xy = [cos(2*pi*(i./n))' sin(2*pi*(i./n))'];
+    xy = [cos(2*pi*(i ./ n))', sin(2*pi*(i ./ n))'];
 else
-    A = sparse(n,n);
-    xy = zeros(0,2);
+    A = sparse(n, n);
+    xy = zeros(0, 2);
 end
-   
+
 if trans && options.directed, A = A'; end

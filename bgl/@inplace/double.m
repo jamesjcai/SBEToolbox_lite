@@ -1,5 +1,5 @@
 function d = double(ipa)
-% INPLACE/DOUBLE Return the data as a Matlab double type.  
+% INPLACE/DOUBLE Return the data as a Matlab double type.
 % d = double(ipa) returns a double array.  Changing d will not change the
 % ipa data.
 %

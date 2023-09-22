@@ -1,9 +1,9 @@
-function n=numedges(A)
+function n = numedges(A)
 % NUM_EDGES The number of edges in a graph.
 %
-% n = num_edges(A) returns the number of edges in graph A.  
+% n = num_edges(A) returns the number of edges in graph A.
 %
-% For symmetric/undirected graphs, the number of edges returned is twice 
+% For symmetric/undirected graphs, the number of edges returned is twice
 % the number of undirected edges.
 %
 % Example:

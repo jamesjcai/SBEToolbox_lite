@@ -8,8 +8,8 @@ function q = modularity_ws05(G, s)
 %       v is verties and vc is verties in group c. A(vc, v) represent edges
 %       weight between vc and v, 0 if they are not link.
 %
-%   q = modularity_ws05(G, s) returns modularity measure of graph G grouped according to 
-%       grouping vector s corresponding to each node. 
+%   q = modularity_ws05(G, s) returns modularity measure of graph G grouped according to
+%       grouping vector s corresponding to each node.
 %
 %   Example:
 %   q = modularity_ws05(G)
@@ -23,7 +23,7 @@ function q = modularity_ws05(G, s)
 % White S., Smyth P. (2005) in Proceedings of the 5th SIAM International
 % Conference on Data Mining, eds Kargupta H., Srivastava J., Kamath C.,
 % Goodman A. (Society for Industrial and Applied Mathematics,
-% Philadelphia), pp 274–285.
+% Philadelphia), pp 274â€“285.
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai
@@ -34,15 +34,15 @@ function q = modularity_ws05(G, s)
 Avv = sum(sum(G));
 
 if nargin < 2
-    n=size(G,1);
-    s = (rand(1,n) > rand)*2-1;
+    n = size(G, 1);
+    s = (rand(1, n) > rand) * 2 - 1;
 end
 
 q = 0;
 for k = min(s):max(s)
-    c = find(s==k);
+    c = find(s == k);
     if isempty(c), continue; end
-    Avcvc = sum(sum(G(c,c)));
-    Avcv = sum(sum(G(c,:)));    
-    q = q + Avcvc/Avv - (Avcv/Avv)^2;
+    Avcvc = sum(sum(G(c, c)));
+    Avcv = sum(sum(G(c, :)));
+    q = q + Avcvc / Avv - (Avcv / Avv)^2;
 end

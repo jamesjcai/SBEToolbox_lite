@@ -1,4 +1,4 @@
-function [sbeG,sbeNode]=randnet_er(n,p)
+function [sbeG, sbeNode] = randnet_er(n, p)
 % RANDNET_ER Generates a random Erdos-Reyni (Gnp) graph
 %
 % A=randnet_er(n,p) generates a random Gnp graph with n vertices and where
@@ -18,10 +18,10 @@ function [sbeG,sbeNode]=randnet_er(n,p)
 % Last revision: 7/12/2010
 
 %%
-sbeG=triu(rand(n)<p,1);
+sbeG = triu(rand(n) < p, 1);
 %A = sparse(A);
-sbeG=sbeG|sbeG';
-sbeNode=sprintfc('%d',1:n);
+sbeG = sbeG | sbeG';
+sbeNode = sprintfc('%d', 1:n);
 % sbeNode=strread(num2str(1:size(sbeG,1)),'%s');
 
 %for k=1:n, sbeNode{k}=sprintf('Node%d',k); end

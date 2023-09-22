@@ -1,7 +1,7 @@
-function n=numvertices(A)
+function n = numvertices(A)
 % NUM_VERTICES The number of vertices in a graph.
 %
-% n = num_vertices(A) returns the number of vertices in graph A.  
+% n = num_vertices(A) returns the number of vertices in graph A.
 %
 % Example:
 %    A = sparse(ones(5));
@@ -12,4 +12,4 @@ function n=numvertices(A)
 % David Gleich
 % Copyright, Stanford University, 2006-2008
 
-n = size(A,1);
+n = size(A, 1);

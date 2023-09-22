@@ -1,4 +1,4 @@
-function perm=topological_order(A,varargin)
+function perm = topological_order(A, varargin)
 % TOPOLOGICAL_ORDER Returns the topological ordering of vertices in a dag
 %
 % perm=topological_order(A) generates a permutation of the vertices that
@@ -12,7 +12,7 @@ function perm=topological_order(A,varargin)
 %
 % ... = topological_order(A,...) takes a set of
 % key-value pairs or an options structure.  See set_matlab_bgl_options
-% for the standard options. 
+% for the standard options.
 %   There are no additional options for this function.
 %
 % Note: this function does not depend upon the non-zero values of A, but
@@ -28,16 +28,17 @@ function perm=topological_order(A,varargin)
 % Copyright, Stanford University, 2007-2008
 
 %% History
-%  2008-09-23: Reformatted common section. 
+%  2008-09-23: Reformatted common section.
 %  2008-10-07: Fixed example.
+
 %%
 
-[trans check full2sparse] = get_matlab_bgl_options(varargin{:});
+[trans, check, full2sparse] = get_matlab_bgl_options(varargin{:});
 if full2sparse && ~issparse(A), A = sparse(A); end
-if check, check_matlab_bgl(A,struct()); end
+if check, check_matlab_bgl(A, struct()); end
 if trans, A = A'; end
 
-[perm dag] = topological_order_mex(A);
+[perm, dag] = topological_order_mex(A);
 
 % in this case it wasn't a dag
 if dag == 0

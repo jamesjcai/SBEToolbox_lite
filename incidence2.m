@@ -8,19 +8,18 @@ function A = incidence2(B)
 % 08 Jul 2009   - created   Ondrej Sluciak <ondrej.sluciak@nt.tuwien.ac.at>
 
 
+siz = size(B);
+if siz(1) ~= siz(2);
+    error('B must be square');
+end
 
-siz = size(B); 
-if siz(1)~=siz(2); 
-    error('B must be square'); 
-end 
- 
-nrknots = siz(1); 
-nredges = nnz(B); 
-[IXknots1,IXknots2] = find(B); 
-sones = ones(nredges,1); 
-IXedges = (1:nredges)'; 
- 
-A = sparse([IXedges; IXedges],... 
-             [IXknots1; IXknots2],... 
-             [-sones; sones],... 
-             nredges,nrknots); 
+nrknots = siz(1);
+nredges = nnz(B);
+[IXknots1, IXknots2] = find(B);
+sones = ones(nredges, 1);
+IXedges = (1:nredges)';
+
+A = sparse([IXedges; IXedges], ...
+    [IXknots1; IXknots2], ...
+    [-sones; sones], ...
+    nredges, nrknots);

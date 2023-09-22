@@ -13,17 +13,17 @@ function [isit] = issimple(adj)
 isit = true;
 
 % check for self-loops
-self_loops = find(diag(adj)>0);
+self_loops = find(diag(adj) > 0);
 if not(isempty(self_loops))
-  fprintf('graph has self loops\n');
-  isit = false;
-  return
+    fprintf('graph has self loops\n');
+    isit = false;
+    return
 end
 
 % check for double edges
-double_edges = find(adj>1);
+double_edges = find(adj > 1);
 if not(isempty(double_edges))
-  fprintf('graph has double edges\n');
-  isit = false;
-  return
+    fprintf('graph has double edges\n');
+    isit = false;
+    return
 end

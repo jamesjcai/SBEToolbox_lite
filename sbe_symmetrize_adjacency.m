@@ -1,5 +1,5 @@
-function [A]=sbe_symmetrize_adjacency(A)
-A=max(A,A');
+function [A] = sbe_symmetrize_adjacency(A)
+A = max(A, A');
 %http://www.stanford.edu/~dgleich/programs/matlab_bgl/faq.html
 
 % Systems Biology & Evolution Toolbox

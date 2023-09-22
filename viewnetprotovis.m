@@ -1,7 +1,7 @@
-function viewnetprotovis(sbeG,sbeNode,sbePartition)
+function viewnetprotovis(sbeG, sbeNode, sbePartition)
 %VIEWNETSVG - view network using SVG
 % Syntax: viewnetsvg(sbeG,sbeNode)
-% 
+%
 % Protovis is a visualization toolkit for JavaScript using SVG.
 
 % Systems Biology & Evolution Toolbox
@@ -9,9 +9,9 @@ function viewnetprotovis(sbeG,sbeNode,sbePartition)
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-if nargin<3
-    sbePartition=[];
+if nargin < 3
+    sbePartition = [];
 end
 cdsbe;
-writesbe2protovis(sbeG,sbeNode,sbePartition,'addins/protovis/networkdata.js');
-web('addins/protovis/output.html','-browser');
+writesbe2protovis(sbeG, sbeNode, sbePartition, 'addins/protovis/networkdata.js');
+web('addins/protovis/output.html', '-browser');

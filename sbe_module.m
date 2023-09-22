@@ -1,9 +1,9 @@
-function [moduleid]=sbe_module(sbeG,method)
+function [moduleid] = sbe_module(sbeG, method)
 %SBE_MODULE - Gateway function for module detection methods
 %
 % [moduleid]=sbe_module(sbeG,method)
 % method: 1 - ClusterONE, 2 - MCODE, 3 - MCL
-% 
+%
 % Systems Biology and Evolution Toolbox (SBEToolbox).
 % Authors: Kranti Konganti, James Cai.
 % (C) Texas A&M University.
@@ -15,25 +15,25 @@ function [moduleid]=sbe_module(sbeG,method)
 
 switch method
     case 1
-        [moduleid]=clusteronerun(sbeG);
+        [moduleid] = clusteronerun(sbeG);
     case 2
-        [moduleid]=mcode(sbeG);
+        [moduleid] = mcode(sbeG);
     case 3
         g = mcl(sbeG, 2, 2, 0, false, 20);
-        [moduleid]=i_net2moduleid(g);
+        [moduleid] = i_net2moduleid(g);
 end
 
 
-function [moduleid]=i_net2moduleid(deduced_net)
-    
-    moduleid=zeros(1,size(deduced_net, 1));
-    full_deduced_net = unique(full(deduced_net), 'rows');
-    cluster_id=0;
-           for k = 1:size(full_deduced_net, 1);
+    function [moduleid] = i_net2moduleid(deduced_net)
 
-               cluster_id = cluster_id + 1;
-               nc = find(full_deduced_net(k, :));               
-               for j = 1:length(nc)
-                   moduleid(nc(j))=cluster_id;
-               end               
-           end
+        moduleid = zeros(1, size(deduced_net, 1));
+        full_deduced_net = unique(full(deduced_net), 'rows');
+        cluster_id = 0;
+        for k = 1:size(full_deduced_net, 1);
+
+            cluster_id = cluster_id + 1;
+            nc = find(full_deduced_net(k, :));
+            for j = 1:length(nc)
+                moduleid(nc(j)) = cluster_id;
+            end
+        end

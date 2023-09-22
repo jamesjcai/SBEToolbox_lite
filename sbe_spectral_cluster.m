@@ -1,19 +1,19 @@
-function [C]=sbe_spectral_cluster(A,k)
+function [C] = sbe_spectral_cluster(A, k)
 
 % Systems Biology & Evolution Toolbox
 % Author: James Cai
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-if nargin<2
-    k=3;
+if nargin < 2
+    k = 3;
 end
 
-diff=eps;
+diff = eps;
 
-[~,L]=sbe_laplacian_matrix(A);
+[~, L] = sbe_laplacian_matrix(A);
 
-[V,~]=eigs(L,k,diff);    % diff = Sigma Value Near Eigenvalue
+[V, ~] = eigs(L, k, diff); % diff = Sigma Value Near Eigenvalue
 % opts.tol = 1e-2;
 %[V,~]=eigs(L,k,'sr',opts);
 %[V,~]=eigs(L,k,'sm',opts);
@@ -23,7 +23,7 @@ diff=eps;
 % the eigenvectors row-wise
 % V = bsxfun(@rdivide, V, sqrt(sum(V.^2, 2)));
 
-V=V./vecnorm(V,2,2);
+V = V ./ vecnorm(V, 2, 2);
 
 %     %% 4. Form Y by renormalizing X
 %     Y = zeros(size(X));
@@ -42,9 +42,9 @@ V=V./vecnorm(V,2,2);
 % C will be a n-by-1 matrix containing the cluster number for
 % each data point
 C = kmeans(V, k, 'start', 'cluster', ...
-                 'EmptyAction', 'singleton');
-             
-             
+    'EmptyAction', 'singleton');
+
+
 % https://github.com/RameshOswal/ABR-HW-6/blob/master/Q1/SpectralClustering.m
 % https://github.com/xiongxoy/ISIMA-Spectral-Clustering/blob/a94f9c2063fef475695870ee6194d542b3769c21/spectral_clustering.m
 % https://www.mathworks.com/matlabcentral/fileexchange/34412-fast-and-efficient-spectral-clustering
@@ -58,7 +58,6 @@ C = kmeans(V, k, 'start', 'cluster', ...
 %     kerNS(i,:) = kerN(i,:) ./ norm(kerN(i,:)+eps);
 % end
 
-% groups = kmeans(kerNS,n,'maxiter',MAXiter,'replicates',REPlic,'emptyaction','singleton'); 
+% groups = kmeans(kerNS,n,'maxiter',MAXiter,'replicates',REPlic,'emptyaction','singleton');
 
 % https://github.com/eeGuoJun/AAAI2019_APMC/blob/1a74556de90e34e46f6670ac3ca98e3ad937fa71/JunGuo_AAAI_2019_APMC_code/files/SpectralClustering.m
-

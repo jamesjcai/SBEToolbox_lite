@@ -1,6 +1,6 @@
-function assert(condition,varargin)
+function assert(condition, varargin)
 
 if condition, return;
 else
-  error(varargin{:});
+    error(varargin{:});
 end

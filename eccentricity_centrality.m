@@ -1,4 +1,4 @@
-function [res]=eccentricity_centrality(G)
+function [res] = eccentricity_centrality(G)
 %ECCENTRICITY_CENTRALITY - eccentricity centrality
 %
 % The eccentricity of a vertex j is the maximum of its finite distances to
@@ -18,12 +18,11 @@ function [res]=eccentricity_centrality(G)
 % Last revision: 7/12/2010
 
 if ~issparse(G)
-    G=double(sparse(G));
+    G = double(sparse(G));
 end
-[D]=all_shortest_paths(G);
-res=max(D,[],1);
+[D] = all_shortest_paths(G);
+res = max(D, [], 1);
 
 %ecc=max(D,[],1);
 %diam=max(ecc);
 %radi=min(ecc);
-

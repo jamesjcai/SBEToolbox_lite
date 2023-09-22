@@ -1,4 +1,4 @@
-function b = subsref(ipd,index)
+function b = subsref(ipd, index)
 % INPLACE/SUBSREF Support Matlab subscript references.
 %
 % This function supports subscript references just like Matlab matrices.
@@ -7,20 +7,20 @@ function b = subsref(ipd,index)
 %    ipa = inplace(cumsum(ones(5,1)));
 %    ipa([2 4])
 %    ipa(3:end)
-    
+
 if (length(index) > 1)
     error('Indexing operation not supported');
 end;
-if (strcmp(index.type,'()'))
-    b = subsref(ipd.get_a(),index);
-elseif (strcmp(index.type,'.'))
+if (strcmp(index.type, '()'))
+    b = subsref(ipd.get_a(), index);
+elseif (strcmp(index.type, '.'))
     try
         a = 1;
         a.a;
     catch
         rethrow(lasterr);
     end;
-elseif (strcmp(index.type,'{}'))
+elseif (strcmp(index.type, '{}'))
     try
         a = 1;
         a{1};

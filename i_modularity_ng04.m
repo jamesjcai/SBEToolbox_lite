@@ -1,4 +1,4 @@
-function q=modularity_ng04(G,s)
+function q = modularity_ng04(G, s)
 
 q = modularity_ws05(G, s);
 

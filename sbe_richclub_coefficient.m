@@ -1,7 +1,7 @@
-function [t]=sbe_richclub_coefficient(G,k)
+function [t] = sbe_richclub_coefficient(G, k)
 %RICHCLUBCOEF - computes rich-club coefficient
 %
-% t(k) = 2*Ek/(Nk*(Nk-1)), where 
+% t(k) = 2*Ek/(Nk*(Nk-1)), where
 % Ek the number of edges among the Nk nodes haveing degreee higher than a
 % given value k.
 %
@@ -13,13 +13,13 @@ function [t]=sbe_richclub_coefficient(G,k)
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-t=nan(1,length(k));
-vect_k=sum(G);
+t = nan(1, length(k));
+vect_k = sum(G);
 
-for x=1:length(k)
-    idx=vect_k>k(x);
-    G2=G(idx,idx);
-    [Nk]=size(G2,1);
-    Ek=0.5*sum(G2(:));
-    t(x)=2*Ek/(Nk*(Nk-1));
+for x = 1:length(k)
+    idx = vect_k > k(x);
+    G2 = G(idx, idx);
+    [Nk] = size(G2, 1);
+    Ek = 0.5 * sum(G2(:));
+    t(x) = 2 * Ek / (Nk * (Nk - 1));
 end

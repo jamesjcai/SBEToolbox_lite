@@ -1,4 +1,4 @@
-function [nc]=neighborhood_conn(G,v)
+function [nc] = neighborhood_conn(G, v)
 % NEIGHBORHOOD_CONN neighborhood connectivity
 %
 % Science 3 May 2002: Vol. 296. no. 5569, pp. 910 - 913
@@ -20,16 +20,15 @@ function [nc]=neighborhood_conn(G,v)
 % Email: jcai@tamu.edu
 % Website: https://github.com/jamesjcai/SBEToolbox_lite
 
-if nargin<2
-    v=1:size(G,1);
+if nargin < 2
+    v = 1:size(G, 1);
 end
 
-nc=zeros(length(v),1);
-d=sum(G);
-for k=1:length(v)
-    n=v(k);    
-    i_neib=G(:,n);
-    d_neib=d(i_neib);
-    nc(k)=mean(d_neib);
+nc = zeros(length(v), 1);
+d = sum(G);
+for k = 1:length(v)
+    n = v(k);
+    i_neib = G(:, n);
+    d_neib = d(i_neib);
+    nc(k) = mean(d_neib);
 end
-

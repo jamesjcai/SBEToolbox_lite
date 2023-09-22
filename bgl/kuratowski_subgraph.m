@@ -1,11 +1,11 @@
-function K = kuratowski_subgraph(A,varargin)
-% KURATOWSKI_SUBGRAPH Identify a Kuratowski subgraph 
+function K = kuratowski_subgraph(A, varargin)
+% KURATOWSKI_SUBGRAPH Identify a Kuratowski subgraph
 %
 % K = kuratowski_subgraph(A) is just a wrapper around the
 % boyer_myrvold_planarity_test to get the subgraph as the first output
 % argument.
 %
-% K is empty if the graph A is planar.  
+% K is empty if the graph A is planar.
 %
 % Example:
 %   A = clique_graph([3,3]); % Generate K_3,3
@@ -17,6 +17,7 @@ function K = kuratowski_subgraph(A,varargin)
 
 %% History
 %  2007-09-29: Initial coding
+
 %%
 
-[is_planar K] = boyer_myrvold_planarity_test(A,varargin{:});
+[is_planar, K] = boyer_myrvold_planarity_test(A, varargin{:});

@@ -7,5 +7,4 @@ function ipd = ipdouble(a)
 %    ipd = ipdouble(ones(5));
 
 ip = inplace(a);
-ipd = class(struct([]),'ipdouble',ip);
-
+ipd = class(struct([]), 'ipdouble', ip);

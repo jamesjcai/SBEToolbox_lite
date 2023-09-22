@@ -22,4 +22,3 @@ for ii = 1:length(fn)
         S.(fn{ii}) = B.(fn{ii});
     end;
 end;
-
