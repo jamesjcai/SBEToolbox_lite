@@ -75,3 +75,6 @@ octave-workspace
 
 # End of https://www.gitignore.io/api/matlab
 
+addins/protovis/networkdata.js
+addins/sigmajs/input.xml
+addins/sigmajs/input.xml
